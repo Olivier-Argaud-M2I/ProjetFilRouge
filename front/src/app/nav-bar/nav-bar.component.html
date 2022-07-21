@@ -1,0 +1,9 @@
+<p>nav-bar works!</p>
+
+<div *ngIf="loginService.isLogged"> Bienvenue {{loginService!.userLogged!.username}}</div>
+
+<input *ngIf="!loginService.isLogged" type="button" routerLink="/login" routerLinkActive = "selectedMenu"  value="Login">
+<input *ngIf="loginService.isLogged" type="button" (click)="logout()" value="Lougout">
+
+<input type="button" routerLink="/gestionComptes" routerLinkActive = "selectedMenu"  value="Gestion comptes">
+<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Accueil collab">
