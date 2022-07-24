@@ -1,10 +1,8 @@
-<p>login works!</p>
-
 <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+    Merci de vous connecter
+</h1>
 
-<form (ngSubmit)="login()" [formGroup]="userForm">
+<form (ngSubmit)="login()" [formGroup]="loginForm">
 
     <div>
         <label> Username</label>
@@ -13,16 +11,10 @@
         <input type="text" formControlName="username">
     </div>
     <div>
-        <div style="color: red;" *ngIf="userForm.get('username')?.touched "   > touched</div>
+        <div style="color: red;" *ngIf="loginForm.get('username')?.dirty  &&  loginForm.get('username')?.hasError('required')"   > champ obligatoire</div>
     </div>
     <div>
-        <div style="color: red;" *ngIf="userForm.get('username')?.dirty "   > dirty</div>
-    </div>
-    <div>
-        <div style="color: red;" *ngIf="userForm.get('username')?.dirty  &&  userForm.get('username')?.hasError('required')"   > champ obligatoire</div>
-    </div>
-    <div>
-        <div style="color: red;" *ngIf="userForm.get('username')?.touched  &&  userForm.get('username')?.hasError('minlength')"   > saisie invalide (minimum trois caractères)</div>
+        <div style="color: red;" *ngIf="loginForm.get('username')?.touched  &&  loginForm.get('username')?.hasError('minlength')"   > saisie invalide (minimum trois caractères)</div>
     </div>
     <div>
         <label> Password</label>
@@ -31,16 +23,18 @@
         <input type="password" formControlName="password">
         </div>
     <div>
-        <div style="color: red;" *ngIf="userForm.get('password')?.dirty  &&  userForm.get('password')?.hasError('required')"   > saisie invalide (minimum cinq caractères)</div>
+        <div style="color: red;" *ngIf="loginForm.get('password')?.dirty  &&  loginForm.get('password')?.hasError('required')"   > saisie invalide (minimum cinq caractères)</div>
     </div>
     <div>
-        <div style="color: red;" *ngIf="userForm.get('password')?.touched  &&  userForm.get('password')?.hasError('minlength')"   > saisie invalide (minimum cinq caractères)</div>
+        <div style="color: red;" *ngIf="loginForm.get('password')?.touched  &&  loginForm.get('password')?.hasError('minlength')"   > saisie invalide (minimum cinq caractères)</div>
     </div>
 
     <div>
-        <input type="submit" value="Envoyer" [disabled]="userForm.invalid">
+        <input type="submit" value="Connecter" [disabled]="loginForm.invalid">
     </div>
-
+    <div>
+        <div style="color: red;" *ngIf="loginError"   > Mauvais username/password</div>
+    </div>
    
     
 </form>

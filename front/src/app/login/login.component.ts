@@ -13,8 +13,10 @@ export class LoginComponent implements OnInit {
   usernameCtrl = this.fb.control('',[Validators.required,Validators.minLength(3)]);
   passwordCtrl = this.fb.control('',[Validators.required,Validators.minLength(5)]);
 
+  loginError = false;
 
-  userForm = this.fb.group({
+
+  loginForm = this.fb.group({
     username:this.usernameCtrl,
     password:this.passwordCtrl,
   
@@ -29,13 +31,22 @@ export class LoginComponent implements OnInit {
 
   login(){
 
-    let user:User = this.userForm.value as User;
+    let user:User = this.loginForm.value as User;
     this.reset();
-    this.loginService.logIn(user);
+    if(!this.loginService.logIn(user)){
+      this.loginError = true;
+      setTimeout(()=>{                      
+        this.loginError = false;
+      }, 3000);
+
+    }
+    
+
+
 
   }
 
   reset(){
-    this.userForm.reset()
+    this.loginForm.reset()
   }
 }

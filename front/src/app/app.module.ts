@@ -14,12 +14,14 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { LoginComponent } from './login/login.component';
 import { AccueilCollabComponent } from './accueil-collab/accueil-collab.component';
 import { GestionComptesComponent } from './gestion-comptes/gestion-comptes.component';
-import { ResumeJourneeComponent } from './resume-journee/resume-journee.component';
+import { ResumeJourneeComponent } from './accueil-collab/resume-journee/resume-journee.component';
 import { ProfilComponent } from './profil/profil.component';
-import { ContactComponent } from './contact/contact.component';
-import { MessagerieComponent } from './messagerie/messagerie.component';
-import { GestionPlanningComponent } from './gestion-planning/gestion-planning.component';
+import { ContactComponent } from './accueil-collab/contact/contact.component';
+import { MessagerieComponent } from './accueil-collab/messagerie/messagerie.component';
+import { GestionPlanningComponent } from './accueil-collab/gestion-planning/gestion-planning.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { UserFormComponent } from './gestion-comptes/user-form/user-form.component';
+import { UserListComponent } from './gestion-comptes/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     ContactComponent,
     MessagerieComponent,
     GestionPlanningComponent,
-    NavBarComponent
+    NavBarComponent,
+    UserFormComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
