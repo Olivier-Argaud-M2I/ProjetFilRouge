@@ -1,8 +1,18 @@
 
 <div *ngIf="loginService.isLogged"> Bienvenue {{loginService!.userLogged!.username}}</div>
 
-<input *ngIf="!loginService.isLogged" type="button" routerLink="/login" routerLinkActive = "selectedMenu"  value="Login">
-<input *ngIf="loginService.isLogged" type="button" (click)="logout()" value="Lougout">
+<!-- <input *ngIf="!loginService.isLogged" type="button" routerLink="/login" routerLinkActive = "selectedMenu"  value="Login"> -->
 
-<input type="button" routerLink="/gestionComptes" routerLinkActive = "selectedMenu"  value="Gestion comptes">
-<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Accueil collab">
+
+<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Accueil">
+<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Messagerie">
+<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Profil">
+<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Agenda">
+<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="To do list">
+
+<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Inbox">
+<input type="button" routerLink="/gestionComptes" routerLinkActive = "selectedMenu"  value="Liste Utilsateurs">
+
+
+<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Paramètres">
+<input *ngIf="loginService.isLogged" type="button" (click)="logout()" value="Se déconnecter">

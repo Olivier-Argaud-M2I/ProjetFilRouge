@@ -1,0 +1,44 @@
+
+<app-nav-bar></app-nav-bar>
+<h1 class="text-3xl font-bold underline" *ngIf="user!=null">
+    Modification de l'utilisateur {{user.lastname}}  {{user.firstname}}
+</h1>
+
+<form (ngSubmit)="update()" [formGroup]="userForm">
+
+    <div>
+        <label>Nom</label>
+    </div>
+    <div>
+        <input type="text" formControlName="lastname">
+    </div>
+    <div>
+        <div style="color: red;" *ngIf="userForm.get('lastname')?.dirty  &&  userForm.get('lastname')?.hasError('required')"   >champ obligatoire</div>
+    </div>
+    
+    <div>
+        <label>Prenom</label>
+    </div>
+    <div>
+        <input type="text" formControlName="firstname">
+        </div>
+    <div>
+        <div style="color: red;" *ngIf="userForm.get('firstname')?.dirty  &&  userForm.get('firstname')?.hasError('required')"   >champ obligatoire </div>
+    </div>
+
+    <div>
+        <label>Nom d'utilisateur</label>
+    </div>
+    <div>
+        <input type="text" formControlName="username">
+        </div>
+    <div>
+        <div style="color: red;" *ngIf="userForm.get('username')?.dirty  &&  userForm.get('username')?.hasError('required')"   >champ obligatoire </div>
+    </div>
+
+    <div>
+        <input type="submit" value="Valider" [disabled]="userForm.invalid">
+    </div>
+   
+    
+</form>

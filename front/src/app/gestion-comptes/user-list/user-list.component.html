@@ -1,0 +1,6 @@
+<h1 class="text-3xl font-bold underline">Liste des utilisateurs</h1>
+<div *ngFor="let user of loginService.users">
+    <div (click)="editer(user)">{{user.username + " : "+user.firstname+" "+user.lastname}}</div>
+    <input type="button" value="Editer" (click)="editer(user)" >
+    <input type="button" value="Suppirmer" (click)="supprimer(user)">
+</div>

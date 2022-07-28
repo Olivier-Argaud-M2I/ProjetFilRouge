@@ -22,6 +22,7 @@ import { GestionPlanningComponent } from './accueil-collab/gestion-planning/gest
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { UserFormComponent } from './gestion-comptes/user-form/user-form.component';
 import { UserListComponent } from './gestion-comptes/user-list/user-list.component';
+import { UserDetailComponent } from './gestion-comptes/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { UserListComponent } from './gestion-comptes/user-list/user-list.compone
     GestionPlanningComponent,
     NavBarComponent,
     UserFormComponent,
-    UserListComponent
+    UserListComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { UserListComponent } from '../gestion-comptes/user-list/user-list.component';
 import { User } from '../model/User';
 
 @Injectable({
@@ -70,6 +71,11 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
     this.users = this.users.filter((u)=> u!==user);
   }
 
+  getUser(username:string|null):User|null{
+    
+    let user:User|null = username!=null ?this.users.filter((u)=>u.username===username)[0]:null;
+    return user;
+  }
 
 
 
