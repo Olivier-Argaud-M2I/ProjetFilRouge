@@ -47,9 +47,9 @@ export class UserDetailComponent implements OnInit {
   
   initForm(){
     if(this.user!=null){
-      this.userForm.get('firstname')!.patchValue(this.user.firstname);
-      this.userForm.get('lastname')!.patchValue(this.user.lastname);
-      this.userForm.get('username')!.patchValue(this.user.username);
+      this.userForm.get('firstname')!.patchValue(this.user.firstName);
+      this.userForm.get('lastname')!.patchValue(this.user.lastName);
+      this.userForm.get('username')!.patchValue(this.user.userName);
     }
   }
 

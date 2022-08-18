@@ -16,8 +16,8 @@ export class UserFormComponent implements OnInit {
 
 
   userForm = this.fb.group({
-    firstname:this.firstnameCtrl,
-    lastname:this.lastnameCtrl,
+    firstName:this.firstnameCtrl,
+    lastName:this.lastnameCtrl,
   
   });
 
@@ -31,8 +31,8 @@ export class UserFormComponent implements OnInit {
   create(){
 
     let user:User = this.userForm.value as User;
-    user.password = user.firstname;
-    user.username = user.firstname.charAt(0)+user.lastname;
+    user.password = user.firstName;
+    user.userName = user.firstName.charAt(0)+user.lastName;
     this.reset();
     this.loginService.createUser(user);
 

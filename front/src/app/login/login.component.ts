@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
 
   loginForm = this.fb.group({
-    username:this.usernameCtrl,
+    userName:this.usernameCtrl,
     password:this.passwordCtrl,
   
   });
@@ -33,17 +33,18 @@ export class LoginComponent implements OnInit {
 
     let user:User = this.loginForm.value as User;
     this.reset();
-    if(!this.loginService.logIn(user)){
-      this.loginError = true;
-      setTimeout(()=>{                      
-        this.loginError = false;
-      }, 3000);
 
-    }
+    this.loginService.logIn(user);
     
+    // if(!this.loginService.logIn(user)){
+    //   this.loginError = true;
+    //   setTimeout(()=>{                      
+    //     this.loginError = false;
+    //   }, 3000);
 
+    // }
 
-
+  
   }
 
   reset(){

@@ -21,11 +21,11 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
   users :User[] = [];
 
   constructor(private router:Router,private http: HttpClient) { 
-    let user:User = new User("admin","admin");
-    user.roles.push("Admin");
-    user.firstname = "admin";
-    user.lastname = "admin";
-    this.users.push(user);
+    // let user:User = new User("admin","admin");
+    // user.roles.push("Admin");
+    // user.firstName = "admin";
+    // user.lastName = "admin";
+    // this.users.push(user);
   }
 
 
@@ -50,18 +50,43 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
     return this.isLogged || this.router.parseUrl('/login');
   }
 
-  logIn(user:User):boolean{
-    this.users.filter((u)=>{
-      if(user.username===u.username &&user.password===u.password){
-        this.isLogged = true;
-        this.userLogged = u;
-        this.router.navigate(['']);
-        return this.isLogged
+
+
+  // logIn(user:User):boolean{
+
+  //   this.users.filter((u)=>{
+  //     if(user.userName===u.userName &&user.password===u.password){
+  //       this.isLogged = true;
+  //       this.userLogged = u;
+  //       this.router.navigate(['']);
+  //       return this.isLogged
+  //     }
+  //     return false;
+  //   })
+  //   return false;
+  // }
+
+
+  logIn(user:User){
+    this.logUser(user).subscribe(
+      (response)=>{
+        if(response!=null){
+          this.isLogged = true;
+          this.userLogged = response;
+          this.router.navigate(['']);
+        }
+        else{
+          // this.loginError = true;
+          // setTimeout(()=>{                      
+          //   this.loginError = false;
+          // }, 3000);
+        }
+       
       }
-      return false;
-    })
-    return false;
+    )
   }
+ 
+
 
   logOut(){
     this.isLogged = false;
@@ -73,13 +98,9 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
     this.users?.push(user);
   }
 
-  delUser(user:User){
-    this.users = this.users.filter((u)=> u!==user);
-  }
-
   getUser(username:string|null):User|null{
     
-    let user:User|null = username!=null ?this.users.filter((u)=>u.username===username)[0]:null;
+    let user:User|null = username!=null ?this.users.filter((u)=>u.userName===username)[0]:null;
     return user;
   }
 
@@ -89,21 +110,39 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
 
 
   public roleMatch(allowedRoles:String[]): boolean {
-    if (this.userLogged != null) {
-      for (let i = 0; i < this.userLogged.roles.length; i++) {
-        for (let j = 0; j < allowedRoles.length; j++) {
-          if (this.userLogged.roles[i] === allowedRoles[j]) {
+    if (this.userLogged != null && this.userLogged.role !=null) {
+
+      for (let j = 0; j < allowedRoles.length; j++) {
+        if(this.userLogged.role.name === allowedRoles[j]){
+          return true;
+        }
+        for (let i = 0; i < this.userLogged.privileges.length; i++) {
+          if (this.userLogged.privileges[i].name === allowedRoles[j]) {
             return true;
           }
         }
       }
+      
     }
     return false;
   }
 
 
+  logUser(user:User){
+    return this.http.post<User>(this.apiUrl+"/users/log",user)
+  }
 
+  getUsers(){
+    return this.http.get<User[]>(this.apiUrl+"/users/all")
+  }
 
+  saveUser(formData:Privilege){
+    return this.http.post<User>(this.apiUrl+"/users/save",formData)
+  }
+
+  deleteUser(id:number){
+    return this.http.post<User>(this.apiUrl+"/users/delete/"+id,null)
+  }
 
 
 

@@ -1,7 +1,7 @@
 <h1 class="text-3xl font-bold underline">Smart Planner</h1>
 
 
-<div *ngIf="loginService.isLogged"> Bienvenue {{loginService!.userLogged!.username}}</div>
+<div *ngIf="loginService.isLogged"> Bienvenue {{loginService!.userLogged!.userName}}</div>
 
 <input *ngIf="!loginService.isLogged" type="button" routerLink="/login" routerLinkActive = "selectedMenu"  value="Login">
 <input *ngIf="loginService.isLogged" type="button" (click)="logout()" value="Lougout">

@@ -10,6 +10,8 @@ import { LoginService } from 'src/app/service/login.service';
 })
 export class UserListComponent implements OnInit {
 
+  users: User[]= [];
+
   loginService:LoginService;
   router:Router;
 
@@ -19,14 +21,26 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.refreshUser();
   }
 
   editer(user:User){
-    this.router.navigate(['userdetail/'+user.username])
+    this.router.navigate(['userdetail/'+user.userName])
   }
 
   supprimer(user:User){
-    this.loginService.delUser(user);
+    this.loginService.deleteUser(user.id).subscribe(
+      ()=>this.refreshUser()
+      );
+  }
+
+
+  refreshUser(){
+    this._loginService.getUsers().subscribe(
+      (responses)=>{
+        this.users = responses;
+      }
+    )
   }
 
 }

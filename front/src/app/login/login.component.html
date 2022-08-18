@@ -8,13 +8,13 @@
         <label> Username</label>
     </div>
     <div>
-        <input type="text" formControlName="username">
+        <input type="text" formControlName="userName">
     </div>
     <div>
-        <div style="color: red;" *ngIf="loginForm.get('username')?.dirty  &&  loginForm.get('username')?.hasError('required')"   > champ obligatoire</div>
+        <div style="color: red;" *ngIf="loginForm.get('userName')?.dirty  &&  loginForm.get('userName')?.hasError('required')"   > champ obligatoire</div>
     </div>
     <div>
-        <div style="color: red;" *ngIf="loginForm.get('username')?.touched  &&  loginForm.get('username')?.hasError('minlength')"   > saisie invalide (minimum trois caractères)</div>
+        <div style="color: red;" *ngIf="loginForm.get('userName')?.touched  &&  loginForm.get('userName')?.hasError('minlength')"   > saisie invalide (minimum trois caractères)</div>
     </div>
     <div>
         <label> Password</label>

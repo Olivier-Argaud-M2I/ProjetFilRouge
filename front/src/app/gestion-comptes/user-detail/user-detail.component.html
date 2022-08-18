@@ -1,7 +1,7 @@
 
 <app-nav-bar></app-nav-bar>
 <h1 class="text-3xl font-bold underline" *ngIf="user!=null">
-    Modification de l'utilisateur {{user.lastname}}  {{user.firstname}}
+    Modification de l'utilisateur {{user.lastName}}  {{user.firstName}}
 </h1>
 
 <form (ngSubmit)="update()" [formGroup]="userForm">

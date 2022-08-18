@@ -1,10 +1,21 @@
+import { Privilege } from "./Privilege";
+import { Role } from "./Role";
+
 export class User{
 
+    private _id!: number;
+    public get id(): number {
+        return this._id;
+    }
+    public set id(value: number) {
+        this._id = value;
+    }
+
     private _username: string="";
-    public get username(): string {
+    public get userName(): string {
         return this._username;
     }
-    public set username(value: string) {
+    public set userName(value: string) {
         this._username = value;
     }
 
@@ -17,28 +28,38 @@ export class User{
     }
 
     private _firstname: string = "";
-    public get firstname(): string {
+    public get firstName(): string {
         return this._firstname;
     }
-    public set firstname(value: string) {
+    public set firstName(value: string) {
         this._firstname = value;
     }
 
     private _lastname: string = "";
-    public get lastname(): string {
+    public get lastName(): string {
         return this._lastname;
     }
-    public set lastname(value: string) {
+    public set lastName(value: string) {
         this._lastname = value;
     }
 
-    private _roles: String[] = [];
-    public get roles(): String[] {
-        return this._roles;
+    private _privileges: Privilege[] = [];
+    public get privileges(): Privilege[] {
+        return this._privileges;
     }
-    public set roles(value: String[]) {
-        this._roles = value;
+    public set privileges(value: Privilege[]) {
+        this._privileges = value;
     }
+
+    private _role!: Role;
+    public get role(): Role {
+        return this._role;
+    }
+    public set role(value: Role) {
+        this._role = value;
+    }
+
+    
 
     // constructor(username:string,password:string,firstname:String,lastname:String,roles:String[]){
     constructor(username:string,password:string){
