@@ -1,0 +1,33 @@
+<h1 class="text-3xl font-bold underline">
+    Gestion des roles
+</h1>
+
+<fieldset>
+    <legend>Création d'un nouveau role</legend>
+    <form (ngSubmit)="create()" [formGroup]="roleForm">
+
+        <div>
+            <label>Nom</label>
+        </div>
+        <div>
+            <input type="text" formControlName="name">
+        </div>
+        <div>
+            <div style="color: red;" *ngIf="roleForm.get('name')?.dirty  &&  roleForm.get('name')?.hasError('required')"   >champ obligatoire</div>
+        </div>
+        <div>
+            <input type="submit" value="Valider" [disabled]="roleForm.invalid">
+        </div>
+
+    </form>
+</fieldset>
+
+<fieldset>
+    <legend>Liste des roles existant</legend>
+
+    <div *ngFor="let role of roles">
+        <p>{{role.name}}</p>
+        <button (click)="del(role.id)">Supprimer</button>
+    </div>
+
+</fieldset>

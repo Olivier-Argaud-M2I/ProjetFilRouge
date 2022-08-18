@@ -23,6 +23,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { UserFormComponent } from './gestion-comptes/user-form/user-form.component';
 import { UserListComponent } from './gestion-comptes/user-list/user-list.component';
 import { UserDetailComponent } from './gestion-comptes/user-detail/user-detail.component';
+import { GestionPrivilegeComponent } from './gestion-comptes/gestion-privilege/gestion-privilege.component';
+import { GestionRoleComponent } from './gestion-comptes/gestion-role/gestion-role.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { UserDetailComponent } from './gestion-comptes/user-detail/user-detail.c
     NavBarComponent,
     UserFormComponent,
     UserListComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    GestionPrivilegeComponent,
+    GestionRoleComponent
   ],
   imports: [
     BrowserModule,

@@ -1,20 +1,26 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserListComponent } from '../gestion-comptes/user-list/user-list.component';
 import { User } from '../model/User';
+import { Constant } from '../constante';
+import { Privilege } from '../model/Privilege';
+import { Role } from '../model/Role';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService implements CanActivate,CanDeactivate<any>{
 
+  apiUrl: string = Constant.API_URL;
+
   isLogged:boolean=false;
   userLogged:User|null = null;
 
   users :User[] = [];
 
-  constructor(private router:Router) { 
+  constructor(private router:Router,private http: HttpClient) { 
     let user:User = new User("admin","admin");
     user.roles.push("Admin");
     user.firstname = "admin";
@@ -100,5 +106,30 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
 
 
 
+
+  getPrivileges(){
+    return this.http.get<Privilege[]>(this.apiUrl+"/privileges/all")
+  }
+
+  savePrivilege(formData:Privilege){
+    return this.http.post<Privilege>(this.apiUrl+"/privileges/save",formData)
+  }
+
+  deletePrivilege(id:number){
+    return this.http.post<Privilege>(this.apiUrl+"/privileges/delete/"+id,null)
+  }
+
+
+  getRoles(){
+    return this.http.get<Role[]>(this.apiUrl+"/roles/all")
+  }
+
+  saveRole(formData:Role){
+    return this.http.post<Role>(this.apiUrl+"/roles/save",formData)
+  }
+
+  deleteRole(id:number){
+    return this.http.post<Role>(this.apiUrl+"/roles/delete/"+id,null)
+  }
 
 }

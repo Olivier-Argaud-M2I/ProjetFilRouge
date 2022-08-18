@@ -1,0 +1,33 @@
+<h1 class="text-3xl font-bold underline">
+    Gestion des privileges
+</h1>
+
+<fieldset>
+    <legend>Création d'un nouveau privilege</legend>
+    <form (ngSubmit)="create()" [formGroup]="privilegeForm">
+
+        <div>
+            <label>Nom</label>
+        </div>
+        <div>
+            <input type="text" formControlName="name">
+        </div>
+        <div>
+            <div style="color: red;" *ngIf="privilegeForm.get('name')?.dirty  &&  privilegeForm.get('name')?.hasError('required')"   >champ obligatoire</div>
+        </div>
+        <div>
+            <input type="submit" value="Valider" [disabled]="privilegeForm.invalid">
+        </div>
+
+    </form>
+</fieldset>
+
+<fieldset>
+    <legend>Liste des privileges existant</legend>
+
+    <div *ngFor="let privilege of privileges">
+        <p>{{privilege.name}}</p>
+        <button (click)="del(privilege.id)">Supprimer</button>
+    </div>
+
+</fieldset>
