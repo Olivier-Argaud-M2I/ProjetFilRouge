@@ -25,7 +25,7 @@
 <fieldset>
     <legend>Liste des roles existant</legend>
 
-    <div *ngFor="let role of roles">
+    <div *ngFor="let role of roles" (click)="editer(role)">
         <p>{{role.name}}</p>
         <button (click)="del(role.id)">Supprimer</button>
     </div>

@@ -29,10 +29,13 @@ export class Role{
     }
 
 
-
-    constructor(name:string){
-        this._name = name;
+    public constructor(init?: Partial<Role>) {
+        Object.assign(this, init);
     }
+
+    // constructor(name:string){
+    //     this._name = name;
+    // }
 
 
 }

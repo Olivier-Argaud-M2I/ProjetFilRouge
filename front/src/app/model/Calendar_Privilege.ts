@@ -1,4 +1,4 @@
-export class Privilege{
+export class CalendarPrivilege{
 
 
     private _id!: number;
@@ -18,12 +18,8 @@ export class Privilege{
         this._name = value;
     }
 
-    // constructor(name:string){
-    //     this._name = name;
-    // }
-
-    public constructor(init?: Partial<Privilege>) {
-        Object.assign(this, init);
+    constructor(name:string){
+        this._name = name;
     }
 
 

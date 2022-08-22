@@ -1,3 +1,4 @@
+import { CalendarPrivilege } from "./Calendar_Privilege";
 import { Privilege } from "./Privilege";
 import { Role } from "./Role";
 
@@ -43,14 +44,6 @@ export class User{
         this._lastname = value;
     }
 
-    private _privileges: Privilege[] = [];
-    public get privileges(): Privilege[] {
-        return this._privileges;
-    }
-    public set privileges(value: Privilege[]) {
-        this._privileges = value;
-    }
-
     private _role!: Role;
     public get role(): Role {
         return this._role;
@@ -59,13 +52,24 @@ export class User{
         this._role = value;
     }
 
-    
+    private _calendarPrivileges: CalendarPrivilege[] = [];
+    public get calendarPrivileges(): CalendarPrivilege[] {
+        return this._calendarPrivileges;
+    }
+    public set calendarPrivileges(value: CalendarPrivilege[]) {
+        this._calendarPrivileges = value;
+    }
 
     // constructor(username:string,password:string,firstname:String,lastname:String,roles:String[]){
-    constructor(username:string,password:string){
-        this._username = username;
-        this._password = password;
+    // constructor(username:string,password:string){
+    //     this._username = username;
+    //     this._password = password;
+    // }
+
+    public constructor(init?: Partial<User>) {
+        Object.assign(this, init);
     }
+
 
     toString(){
         return this._username + " : "+this._firstname+" "+this._lastname;

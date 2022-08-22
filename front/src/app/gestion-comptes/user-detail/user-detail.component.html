@@ -10,31 +10,44 @@
         <label>Nom</label>
     </div>
     <div>
-        <input type="text" formControlName="lastname">
+        <input type="text" formControlName="lastName">
     </div>
     <div>
-        <div style="color: red;" *ngIf="userForm.get('lastname')?.dirty  &&  userForm.get('lastname')?.hasError('required')"   >champ obligatoire</div>
+        <div style="color: red;" *ngIf="userForm.get('lastName')?.dirty  &&  userForm.get('lastName')?.hasError('required')"   >champ obligatoire</div>
     </div>
     
     <div>
         <label>Prenom</label>
     </div>
     <div>
-        <input type="text" formControlName="firstname">
+        <input type="text" formControlName="firstName">
         </div>
     <div>
-        <div style="color: red;" *ngIf="userForm.get('firstname')?.dirty  &&  userForm.get('firstname')?.hasError('required')"   >champ obligatoire </div>
+        <div style="color: red;" *ngIf="userForm.get('firstName')?.dirty  &&  userForm.get('firstName')?.hasError('required')"   >champ obligatoire </div>
     </div>
 
     <div>
         <label>Nom d'utilisateur</label>
     </div>
     <div>
-        <input type="text" formControlName="username">
+        <input type="text" formControlName="userName">
         </div>
     <div>
-        <div style="color: red;" *ngIf="userForm.get('username')?.dirty  &&  userForm.get('username')?.hasError('required')"   >champ obligatoire </div>
+        <div style="color: red;" *ngIf="userForm.get('userName')?.dirty  &&  userForm.get('userName')?.hasError('required')"   >champ obligatoire </div>
     </div>
+
+
+    <div>
+        <label>Role de l'utilisateur</label>
+    </div>
+    <div>
+        <select name="role" id="role" formControlName="role">
+            <option *ngFor="let role of roles; let k = index" [ngValue]="role">
+                {{role.name}}
+            </option>
+        </select>
+    </div>
+
 
     <div>
         <input type="submit" value="Valider" [disabled]="userForm.invalid">

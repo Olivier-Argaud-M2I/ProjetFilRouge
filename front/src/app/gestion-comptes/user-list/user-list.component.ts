@@ -25,7 +25,7 @@ export class UserListComponent implements OnInit {
   }
 
   editer(user:User){
-    this.router.navigate(['userdetail/'+user.userName])
+    this.router.navigate(['userdetail/'+user.id])
   }
 
   supprimer(user:User){

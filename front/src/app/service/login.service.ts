@@ -98,14 +98,7 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
     this.users?.push(user);
   }
 
-  getUser(username:string|null):User|null{
-    
-    let user:User|null = username!=null ?this.users.filter((u)=>u.userName===username)[0]:null;
-    return user;
-  }
-
-
-
+ 
 
 
 
@@ -116,13 +109,13 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
         if(this.userLogged.role.name === allowedRoles[j]){
           return true;
         }
-        for (let i = 0; i < this.userLogged.privileges.length; i++) {
-          if (this.userLogged.privileges[i].name === allowedRoles[j]) {
+        for (let i = 0; i < this.userLogged.role.privileges.length; i++) {
+          if (this.userLogged.role.privileges[i].name === allowedRoles[j]) {
             return true;
           }
         }
       }
-      
+
     }
     return false;
   }
@@ -132,11 +125,15 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
     return this.http.post<User>(this.apiUrl+"/users/log",user)
   }
 
+  getUser(id:number){  
+    return this.http.get<User>(this.apiUrl+"/users/user/"+id)
+  }
+
   getUsers(){
     return this.http.get<User[]>(this.apiUrl+"/users/all")
   }
 
-  saveUser(formData:Privilege){
+  saveUser(formData:User){
     return this.http.post<User>(this.apiUrl+"/users/save",formData)
   }
 
@@ -145,6 +142,11 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
   }
 
 
+
+  
+  getPrivilege(id:number){
+    return this.http.get<Privilege>(this.apiUrl+"/privileges/privilege/"+id)
+  }
 
   getPrivileges(){
     return this.http.get<Privilege[]>(this.apiUrl+"/privileges/all")
@@ -158,6 +160,10 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
     return this.http.post<Privilege>(this.apiUrl+"/privileges/delete/"+id,null)
   }
 
+
+  getRole(id:number){
+    return this.http.get<Role>(this.apiUrl+"/roles/role/"+id)
+  }
 
   getRoles(){
     return this.http.get<Role[]>(this.apiUrl+"/roles/all")

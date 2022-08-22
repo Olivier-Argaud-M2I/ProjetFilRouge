@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Role } from 'src/app/model/Role';
 import { LoginService } from 'src/app/service/login.service';
 
@@ -19,7 +20,11 @@ export class GestionRoleComponent implements OnInit {
     name:this.nameCtrl
   });
 
-  constructor(private fb:FormBuilder,private loginService:LoginService) {
+  constructor(
+    private fb:FormBuilder,
+    private loginService:LoginService,
+    private router:Router
+    ) {
 
   }
 
@@ -56,4 +61,11 @@ export class GestionRoleComponent implements OnInit {
   reset(){
     this.roleForm.reset()
   }
+
+
+
+  editer(role:Role){
+    this.router.navigate(['roledetail/'+role.id])
+  }
+
 }

@@ -25,6 +25,7 @@ import { UserListComponent } from './gestion-comptes/user-list/user-list.compone
 import { UserDetailComponent } from './gestion-comptes/user-detail/user-detail.component';
 import { GestionPrivilegeComponent } from './gestion-comptes/gestion-privilege/gestion-privilege.component';
 import { GestionRoleComponent } from './gestion-comptes/gestion-role/gestion-role.component';
+import { RoleDetailComponent } from './gestion-comptes/role-detail/role-detail.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { GestionRoleComponent } from './gestion-comptes/gestion-role/gestion-rol
     UserListComponent,
     UserDetailComponent,
     GestionPrivilegeComponent,
-    GestionRoleComponent
+    GestionRoleComponent,
+    RoleDetailComponent
   ],
   imports: [
     BrowserModule,

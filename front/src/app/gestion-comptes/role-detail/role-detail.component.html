@@ -1,0 +1,34 @@
+
+<app-nav-bar></app-nav-bar>
+<h1 class="text-3xl font-bold underline" *ngIf="role!=null">
+    Modification du role {{role.name}}
+</h1>
+
+<div>
+    <h2>
+        Liste des privileges du role
+    </h2>
+    <div *ngFor="let priv of role!.privileges" >
+        {{priv.name}}
+        <button (click)="removePrivilege(priv)">Supprimer</button>
+    </div>
+</div>
+
+<form (ngSubmit)="addPrivilege()" [formGroup]="roleForm">
+
+    <div>
+        <label>liste des privileges</label>
+    </div>
+    <div>
+        <select name="privilege" id="privilege" formControlName="privilege">
+            <option *ngFor="let privilege of privileges; let k = index" [ngValue]="privilege">
+                {{privilege.name}}
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <input type="submit" value="Valider" [disabled]="roleForm.invalid">
+    </div>
+    
+</form>
