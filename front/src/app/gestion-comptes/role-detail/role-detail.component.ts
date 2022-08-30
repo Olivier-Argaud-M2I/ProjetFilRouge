@@ -5,6 +5,8 @@ import { Privilege } from 'src/app/model/Privilege';
 import { Role } from 'src/app/model/Role';
 import { User } from 'src/app/model/User';
 import { LoginService } from 'src/app/service/login.service';
+import { PrivilegeService } from 'src/app/service/privilege.service';
+import { RoleService } from 'src/app/service/role.service';
 
 @Component({
   selector: 'app-role-detail',
@@ -13,8 +15,7 @@ import { LoginService } from 'src/app/service/login.service';
 })
 export class RoleDetailComponent implements OnInit {
 
-  route:ActivatedRoute;
-  loginService:LoginService;
+
   privileges:Privilege[] = [];
   role:Role | null = null;
 
@@ -27,13 +28,13 @@ export class RoleDetailComponent implements OnInit {
   });
 
   constructor( 
-    private _route: ActivatedRoute
-    ,private _loginService:LoginService
-    ,private fb:FormBuilder
-    ,private router:Router
+    private route:ActivatedRoute,
+    private privilegeService:PrivilegeService,
+    private roleService:RoleService,
+    private fb:FormBuilder
+
     ){
-    this.route = _route;
-    this.loginService = _loginService;
+
   }
 
 
@@ -44,7 +45,7 @@ export class RoleDetailComponent implements OnInit {
   getRole(){
     const id = this.route.snapshot.paramMap.get('id');
     if(id!=null){
-      this.loginService.getRole(Number(id)).subscribe(
+      this.roleService.getRole(Number(id)).subscribe(
         (response)=>{
           if(response!=null){
             this.role = response
@@ -56,10 +57,8 @@ export class RoleDetailComponent implements OnInit {
   }
 
   getPrivileges(){
-    this._loginService.getPrivileges().subscribe(
+    this.privilegeService.getPrivileges().subscribe(
       (response)=>{
-        console.log(response);
-        console.log(this.role?.privileges);
         this.privileges = response.filter((priv)=>!this.role?.privileges.map(privi=>privi.id).includes(priv.id));
         this.initForm();
       }
@@ -98,14 +97,14 @@ export class RoleDetailComponent implements OnInit {
     let priv:any = this.roleForm.get('privilege')!.value;
     if(this.role!=null){
       this.role!.privileges.push(priv);
-      this._loginService.saveRole(this.role).subscribe(()=>this.getPrivileges());
+      this.roleService.saveRole(this.role).subscribe(()=>this.getPrivileges());
     }
   }
 
   removePrivilege(priv:Privilege){
     this.role!.privileges = this.role!.privileges.filter((privi)=>priv.id!==privi.id);
     if(this.role!=null){
-      this._loginService.saveRole(this.role).subscribe(()=>this.getPrivileges());
+      this.roleService.saveRole(this.role).subscribe(()=>this.getPrivileges());
     }
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/User';
 import { LoginService } from 'src/app/service/login.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -12,12 +13,8 @@ export class UserListComponent implements OnInit {
 
   users: User[]= [];
 
-  loginService:LoginService;
-  router:Router;
+  constructor(private userService:UserService,private router:Router) { 
 
-  constructor(private _loginService:LoginService,private _router:Router) { 
-    this.loginService = _loginService;
-    this.router = _router;
   }
 
   ngOnInit(): void {
@@ -29,14 +26,14 @@ export class UserListComponent implements OnInit {
   }
 
   supprimer(user:User){
-    this.loginService.deleteUser(user.id).subscribe(
+    this.userService.deleteUser(user.id).subscribe(
       ()=>this.refreshUser()
       );
   }
 
 
   refreshUser(){
-    this._loginService.getUsers().subscribe(
+    this.userService.getUsers().subscribe(
       (responses)=>{
         this.users = responses;
       }

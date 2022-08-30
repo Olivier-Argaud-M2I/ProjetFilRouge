@@ -52,13 +52,23 @@ export class User{
         this._role = value;
     }
 
-    private _calendarPrivileges: CalendarPrivilege[] = [];
-    public get calendarPrivileges(): CalendarPrivilege[] {
-        return this._calendarPrivileges;
+    private _collaborators: User[] = [];
+    public get collaborators(): User[] {
+        return this._collaborators;
     }
-    public set calendarPrivileges(value: CalendarPrivilege[]) {
-        this._calendarPrivileges = value;
+    public set collaborators(value: User[]) {
+        this._collaborators = value;
     }
+  
+
+
+    // private _calendarPrivileges: CalendarPrivilege[] = [];
+    // public get calendarPrivileges(): CalendarPrivilege[] {
+    //     return this._calendarPrivileges;
+    // }
+    // public set calendarPrivileges(value: CalendarPrivilege[]) {
+    //     this._calendarPrivileges = value;
+    // }
 
     // constructor(username:string,password:string,firstname:String,lastname:String,roles:String[]){
     // constructor(username:string,password:string){

@@ -1,37 +1,30 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserListComponent } from '../gestion-comptes/user-list/user-list.component';
+
 import { User } from '../model/User';
-import { Constant } from '../constante';
-import { Privilege } from '../model/Privilege';
-import { Role } from '../model/Role';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService implements CanActivate,CanDeactivate<any>{
 
-  apiUrl: string = Constant.API_URL;
 
   isLogged:boolean=false;
   userLogged:User|null = null;
 
-  users :User[] = [];
 
-  constructor(private router:Router,private http: HttpClient) { 
-    // let user:User = new User("admin","admin");
-    // user.roles.push("Admin");
-    // user.firstName = "admin";
-    // user.lastName = "admin";
-    // this.users.push(user);
+  constructor(private router:Router,private userService:UserService) { 
+;
   }
 
 
   canDeactivate(component: any, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot | undefined): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     return this.isLogged;
   }
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
     const roles = route.data['roles'] as Array<string>;
@@ -52,23 +45,8 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
 
 
 
-  // logIn(user:User):boolean{
-
-  //   this.users.filter((u)=>{
-  //     if(user.userName===u.userName &&user.password===u.password){
-  //       this.isLogged = true;
-  //       this.userLogged = u;
-  //       this.router.navigate(['']);
-  //       return this.isLogged
-  //     }
-  //     return false;
-  //   })
-  //   return false;
-  // }
-
-
   logIn(user:User){
-    this.logUser(user).subscribe(
+    this.userService.logUser(user).subscribe(
       (response)=>{
         if(response!=null){
           this.isLogged = true;
@@ -93,14 +71,6 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
     this.userLogged = null;
     this.router.navigate(['']);
   }
-  
-  createUser(user:User){
-    this.users?.push(user);
-  }
-
- 
-
-
 
   public roleMatch(allowedRoles:String[]): boolean {
     if (this.userLogged != null && this.userLogged.role !=null) {
@@ -121,60 +91,6 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
   }
 
 
-  logUser(user:User){
-    return this.http.post<User>(this.apiUrl+"/users/log",user)
-  }
-
-  getUser(id:number){  
-    return this.http.get<User>(this.apiUrl+"/users/user/"+id)
-  }
-
-  getUsers(){
-    return this.http.get<User[]>(this.apiUrl+"/users/all")
-  }
-
-  saveUser(formData:User){
-    return this.http.post<User>(this.apiUrl+"/users/save",formData)
-  }
-
-  deleteUser(id:number){
-    return this.http.post<User>(this.apiUrl+"/users/delete/"+id,null)
-  }
-
-
-
   
-  getPrivilege(id:number){
-    return this.http.get<Privilege>(this.apiUrl+"/privileges/privilege/"+id)
-  }
-
-  getPrivileges(){
-    return this.http.get<Privilege[]>(this.apiUrl+"/privileges/all")
-  }
-
-  savePrivilege(formData:Privilege){
-    return this.http.post<Privilege>(this.apiUrl+"/privileges/save",formData)
-  }
-
-  deletePrivilege(id:number){
-    return this.http.post<Privilege>(this.apiUrl+"/privileges/delete/"+id,null)
-  }
-
-
-  getRole(id:number){
-    return this.http.get<Role>(this.apiUrl+"/roles/role/"+id)
-  }
-
-  getRoles(){
-    return this.http.get<Role[]>(this.apiUrl+"/roles/all")
-  }
-
-  saveRole(formData:Role){
-    return this.http.post<Role>(this.apiUrl+"/roles/save",formData)
-  }
-
-  deleteRole(id:number){
-    return this.http.post<Role>(this.apiUrl+"/roles/delete/"+id,null)
-  }
 
 }

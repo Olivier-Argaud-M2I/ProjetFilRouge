@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Role } from 'src/app/model/Role';
 import { User } from 'src/app/model/User';
 import { LoginService } from 'src/app/service/login.service';
+import { RoleService } from 'src/app/service/role.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -13,8 +15,6 @@ import { LoginService } from 'src/app/service/login.service';
 export class UserDetailComponent implements OnInit {
 
 
-  route:ActivatedRoute;
-  loginService:LoginService;
   user:User | null = null;
   roles:Role[] = [];
 
@@ -34,13 +34,13 @@ export class UserDetailComponent implements OnInit {
   });
 
   constructor( 
-    private _route: ActivatedRoute
-    ,private _loginService:LoginService
-    ,private fb:FormBuilder
-    ,private router:Router
+    private route: ActivatedRoute,
+    private roleService:RoleService,
+    private userService:UserService,
+    private fb:FormBuilder,
+    private router:Router
     ){
-    this.route = _route;
-    this.loginService = _loginService;
+
   }
 
 
@@ -51,7 +51,7 @@ export class UserDetailComponent implements OnInit {
   getUser(){
     const id = this.route.snapshot.paramMap.get('id');
     if(id!=null){
-      this.loginService.getUser(Number(id)).subscribe(
+      this.userService.getUser(Number(id)).subscribe(
         (response)=>{
           if(response!=null){
             this.user = response
@@ -63,7 +63,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   getRoles(){
-    this._loginService.getRoles().subscribe(
+    this.roleService.getRoles().subscribe(
       (response)=>{
         this.roles = response;
         this.initForm();
@@ -95,7 +95,7 @@ export class UserDetailComponent implements OnInit {
     let firstName1:any = this.userForm.get('firstName')!.value;
     this.user!.firstName = firstName1;
 
-    this._loginService.saveUser(this.user!).subscribe();
+    this.userService.saveUser(this.user!).subscribe();
     this.router.navigate(['gestionComptes'])
   }
 

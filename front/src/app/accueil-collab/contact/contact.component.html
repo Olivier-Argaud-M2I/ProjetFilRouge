@@ -1,1 +1,35 @@
 <p>contact works!</p>
+<h1 class="text-3xl font-bold underline">
+    Gestion des contacts
+</h1>
+
+
+<fieldset>
+    <legend>Liste des contacts existants</legend>
+
+    <div *ngFor="let contact of contacts" >
+        <p (click)="editer(contact.collaborator)">{{contact.collaborator.lastName}} {{contact.collaborator.firstName}}</p>
+        <button (click)="removeContact(contact.collaborator)">Supprimer</button>
+    </div>
+
+</fieldset>
+
+
+<form (ngSubmit)="addContact()" [formGroup]="contactForm">
+
+    <div>
+        <label>liste des contacts</label>
+    </div>
+    <div>
+        <select name="contact" id="contact" formControlName="contact">
+            <option *ngFor="let contact of possibleContacts; let k = index" [ngValue]="contact">
+                {{contact.lastName}} - {{contact.firstName}}
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <input type="submit" value="Valider" [disabled]="contactForm.invalid">
+    </div>
+    
+</form>

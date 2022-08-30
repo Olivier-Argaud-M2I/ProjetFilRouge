@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Role } from 'src/app/model/Role';
 import { LoginService } from 'src/app/service/login.service';
+import { RoleService } from 'src/app/service/role.service';
 
 @Component({
   selector: 'app-gestion-role',
@@ -22,7 +23,7 @@ export class GestionRoleComponent implements OnInit {
 
   constructor(
     private fb:FormBuilder,
-    private loginService:LoginService,
+    private roleService:RoleService,
     private router:Router
     ) {
 
@@ -35,7 +36,7 @@ export class GestionRoleComponent implements OnInit {
   create(){
     let role:Role = this.roleForm.value as Role;
     this.reset();
-    this.loginService.saveRole(role).subscribe(
+    this.roleService.saveRole(role).subscribe(
       ()=>{
         this.refreshRole();
       }
@@ -43,7 +44,7 @@ export class GestionRoleComponent implements OnInit {
   }
 
   del(id:number){
-    this.loginService.deleteRole(id).subscribe(
+    this.roleService.deleteRole(id).subscribe(
       ()=>{
         this.refreshRole();
       }
@@ -51,7 +52,7 @@ export class GestionRoleComponent implements OnInit {
   }
 
   refreshRole(){
-    this.loginService.getRoles().subscribe(
+    this.roleService.getRoles().subscribe(
       (response)=>{
         this.roles = response
       }

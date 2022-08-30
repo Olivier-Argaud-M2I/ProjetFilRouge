@@ -1,0 +1,26 @@
+<p>contact-detail works!</p>
+
+<div>
+    <p> Nom : {{contact.lastName}}</p>
+    
+    <p> Prenom : {{contact.firstName}}</p>
+</div>
+
+<div>
+    <h3>droit sur le contact contact</h3>
+    <div *ngFor="let priv of contactPrivileges">
+        <p>{{priv.name}}</p>
+    </div>
+
+</div>
+
+<div>
+    <h3>droit du contact sur moi</h3>
+
+    <div *ngFor="let priv of userPrivileges">
+        <p>{{priv.name}}</p>
+    </div>
+
+
+</div>
+

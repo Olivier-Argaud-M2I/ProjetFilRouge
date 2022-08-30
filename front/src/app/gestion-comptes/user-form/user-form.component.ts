@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/model/User';
 import { LoginService } from 'src/app/service/login.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-user-form',
@@ -21,7 +22,7 @@ export class UserFormComponent implements OnInit {
   
   });
 
-  constructor(private fb:FormBuilder,private loginService:LoginService) {
+  constructor(private fb:FormBuilder,private userService:UserService) {
 
   }
 
@@ -34,7 +35,7 @@ export class UserFormComponent implements OnInit {
     user.password = user.firstName;
     user.userName = user.firstName.charAt(0)+user.lastName;
     this.reset();
-    this.loginService.createUser(user);
+    this.userService.saveUser(user);
 
   }
 

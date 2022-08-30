@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Privilege } from 'src/app/model/Privilege';
 import { LoginService } from 'src/app/service/login.service';
+import { PrivilegeService } from 'src/app/service/privilege.service';
 
 @Component({
   selector: 'app-gestion-privilege',
@@ -19,7 +20,10 @@ export class GestionPrivilegeComponent implements OnInit {
     name:this.nameCtrl
   });
 
-  constructor(private fb:FormBuilder,private loginService:LoginService) {
+  constructor(
+    private fb:FormBuilder,
+    private privilegeService:PrivilegeService
+    ) {
 
   }
 
@@ -30,7 +34,7 @@ export class GestionPrivilegeComponent implements OnInit {
   create(){
     let privilege:Privilege = this.privilegeForm.value as Privilege;
     this.reset();
-    this.loginService.savePrivilege(privilege).subscribe(
+    this.privilegeService.savePrivilege(privilege).subscribe(
       ()=>{
         this.refreshPrivilege();
       }
@@ -38,7 +42,7 @@ export class GestionPrivilegeComponent implements OnInit {
   }
 
   del(id:number){
-    this.loginService.deletePrivilege(id).subscribe(
+    this.privilegeService.deletePrivilege(id).subscribe(
       ()=>{
         this.refreshPrivilege();
       }
@@ -46,7 +50,7 @@ export class GestionPrivilegeComponent implements OnInit {
   }
 
   refreshPrivilege(){
-    this.loginService.getPrivileges().subscribe(
+    this.privilegeService.getPrivileges().subscribe(
       (response)=>{
         this.privileges = response
       }
