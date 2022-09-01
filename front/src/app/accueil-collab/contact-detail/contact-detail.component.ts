@@ -1,7 +1,11 @@
+import { TmplAstVariable } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CalendarPrivilege } from 'src/app/model/Calendar_Privilege';
+import { Contact } from 'src/app/model/Contact';
 import { User } from 'src/app/model/User';
+import { CalendarPrivilegeService } from 'src/app/service/calendar-privilege.service';
+import { ContactService } from 'src/app/service/contact.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -11,21 +15,23 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ContactDetailComponent implements OnInit {
 
-  contact!: User;
-
-  contactPrivileges:CalendarPrivilege[]=[];
+  contact!: Contact;
 
   userPrivileges:CalendarPrivilege[]=[];
 
+  calendarPrivileges:CalendarPrivilege[]=[];
+
   constructor(
     private userService:UserService,
+    private contactService:ContactService,
+    private calendarPrivilegeService:CalendarPrivilegeService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.getContact();
     this.getUserPrivileges();
-    this.getContactPrivileges();
+    this.getAllprivileges();
   }
 
 
@@ -33,7 +39,7 @@ export class ContactDetailComponent implements OnInit {
   getContact(){
     const id = this.route.snapshot.paramMap.get('id');
     if(id!=null){
-      this.userService.getUser(Number(id)).subscribe(
+      this.contactService.getContactById(Number(id)).subscribe(
         (response)=>{
           if(response!=null){
             this.contact = response
@@ -45,11 +51,50 @@ export class ContactDetailComponent implements OnInit {
   }
 
   getUserPrivileges(){
+    this.contactService.getContact(this.contact.collaborator.id,this.contact.user.id).subscribe(
+      (cont)=>this.userPrivileges = cont.calendarPrivileges
+    )
+
 
   }
- 
-  getContactPrivileges(){
-    
+
+
+  getAllprivileges(){
+    this.calendarPrivilegeService.getCalendarPrivileges().subscribe(
+      (response)=>{
+        this.calendarPrivileges = response;
+      }
+    )
+  }
+
+
+
+  changeCheckbox(evt:any,calendarPrivilege:CalendarPrivilege) {
+    calendarPrivilege.status = evt.target.checked;
+    if(evt.target.checked){
+      this.contact.calendarPrivileges.push(calendarPrivilege)
+    }
+    else{
+      this.contact.calendarPrivileges=this.contact.calendarPrivileges.filter((priv)=>calendarPrivilege.id!=priv.id)
+    }
+    this.saveContact();
+  }
+
+  saveContact(){
+    this.contactService.updateContact(this.contact).subscribe(
+      ()=>this.ngOnInit()
+    )
+  }
+
+
+  isValid(priv:CalendarPrivilege){
+
+    return this.contact.calendarPrivileges.map((privi)=>privi.id).indexOf(priv.id)>-1;
+  }
+
+  isValidC(priv:CalendarPrivilege){
+
+    return this.userPrivileges.map((privi)=>privi.id).indexOf(priv.id)>-1;
   }
 
 }

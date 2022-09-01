@@ -13,6 +13,10 @@ export class ContactService {
   constructor(private http: HttpClient) { }
 
 
+  getContactById(id:number){
+    return this.http.get<Contact>(this.apiUrl+"/contacts/contact/"+id)
+  }
+
   getContact(idU:number,idC:number){
     return this.http.get<Contact>(this.apiUrl+"/contacts/contact/"+idU+"/"+idC)
   }

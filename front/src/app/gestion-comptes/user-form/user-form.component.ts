@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/User';
-import { LoginService } from 'src/app/service/login.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -11,18 +11,27 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class UserFormComponent implements OnInit {
 
- 
+
   firstnameCtrl = this.fb.control('',[Validators.required]);
   lastnameCtrl = this.fb.control('',[Validators.required]);
+  emailCtrl = this.fb.control('',[Validators.required]);
+  telephoneCtrl = this.fb.control('',[Validators.required]);
 
 
   userForm = this.fb.group({
     firstName:this.firstnameCtrl,
     lastName:this.lastnameCtrl,
-  
+    email:this.emailCtrl,
+    telephone:this.telephoneCtrl,
+
+
   });
 
-  constructor(private fb:FormBuilder,private userService:UserService) {
+  constructor(
+    private fb:FormBuilder,
+    private userService:UserService,
+    private router:Router
+    ) {
 
   }
 
@@ -35,7 +44,9 @@ export class UserFormComponent implements OnInit {
     user.password = user.firstName;
     user.userName = user.firstName.charAt(0)+user.lastName;
     this.reset();
-    this.userService.saveUser(user);
+    this.userService.saveUser(user).subscribe(
+      ()=>this.router.navigate(['gestionComptes'])
+    );
 
   }
 

@@ -13,19 +13,41 @@
     <div>
         <div style="color: red;" *ngIf="userForm.get('lastName')?.dirty  &&  userForm.get('lastName')?.hasError('required')"   >champ obligatoire</div>
     </div>
+
     <div>
         <label>Prenom</label>
     </div>
     <div>
         <input type="text" formControlName="firstName">
-        </div>
+    </div>
     <div>
         <div style="color: red;" *ngIf="userForm.get('firstName')?.dirty  &&  userForm.get('firstName')?.hasError('required')"   >champ obligatoire </div>
     </div>
+
+    <div>
+        <label>Email</label>
+    </div>
+    <div>
+        <input type="text" formControlName="email">
+    </div>
+    <div>
+        <div style="color: red;" *ngIf="userForm.get('email')?.dirty  &&  userForm.get('email')?.hasError('required')"   >champ obligatoire </div>
+    </div>
+
+    <div>
+        <label>Telephone</label>
+    </div>
+    <div>
+        <input type="text" formControlName="telephone">
+    </div>
+    <div>
+        <div style="color: red;" *ngIf="userForm.get('telephone')?.dirty  &&  userForm.get('telephone')?.hasError('required')"   >champ obligatoire </div>
+    </div>
+
     <div>
         <input type="submit" value="Valider" [disabled]="userForm.invalid">
     </div>
 
-   
-    
+
+
 </form>

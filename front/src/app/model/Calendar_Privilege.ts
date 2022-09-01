@@ -23,4 +23,14 @@ export class CalendarPrivilege{
     }
 
 
+    private _status: boolean = false;
+    public get status(): boolean {
+        return this._status;
+    }
+    public set status(value: boolean) {
+        this._status = value;
+    }
+
+
+
 }

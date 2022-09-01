@@ -27,6 +27,9 @@ import { GestionPrivilegeComponent } from './gestion-comptes/gestion-privilege/g
 import { GestionRoleComponent } from './gestion-comptes/gestion-role/gestion-role.component';
 import { RoleDetailComponent } from './gestion-comptes/role-detail/role-detail.component';
 import { ContactDetailComponent } from './accueil-collab/contact-detail/contact-detail.component';
+import { MeteoComponent } from './accueil/meteo/meteo.component';
+import { ForecastComponent } from './accueil/meteo/forecast/forecast.component';
+import { MeteoDetailComponent } from './accueil/meteo/meteo-detail/meteo-detail.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,11 @@ import { ContactDetailComponent } from './accueil-collab/contact-detail/contact-
     GestionPrivilegeComponent,
     GestionRoleComponent,
     RoleDetailComponent,
-    ContactDetailComponent
+    ContactDetailComponent,
+    MeteoComponent,
+    ForecastComponent,
+    MeteoDetailComponent
+
   ],
   imports: [
     BrowserModule,

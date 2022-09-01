@@ -18,7 +18,7 @@ export class ContactComponent implements OnInit {
   user!: User | null;
 
   contacts:Contact[]= [];
-  
+
   possibleContacts:User[]= [];
 
 
@@ -40,7 +40,7 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.loginService.userLogged;
     this.getContacts();
-    
+
   }
 
 
@@ -58,7 +58,7 @@ export class ContactComponent implements OnInit {
       (response)=>{
         this.possibleContacts = response.
           filter((u)=>!this.contacts.map(cont=>cont.collaborator.id).includes(u.id)).
-          filter((u)=>u.id != this.user?.id); 
+          filter((u)=>u.id != this.user?.id);
         console.log(this.possibleContacts);
       }
     )
@@ -89,8 +89,8 @@ export class ContactComponent implements OnInit {
 
 
 
-  editer(collaborator:User){
-    this.router.navigate(['contactdetail/'+collaborator.id])
+  editer(contactId:number){
+    this.router.navigate(['contactdetail/'+contactId])
   }
 
 

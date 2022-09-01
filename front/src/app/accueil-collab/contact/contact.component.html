@@ -8,7 +8,7 @@
     <legend>Liste des contacts existants</legend>
 
     <div *ngFor="let contact of contacts" >
-        <p (click)="editer(contact.collaborator)">{{contact.collaborator.lastName}} {{contact.collaborator.firstName}}</p>
+        <p (click)="editer(contact.id)">{{contact.collaborator.lastName}} {{contact.collaborator.firstName}}</p>
         <button (click)="removeContact(contact.collaborator)">Supprimer</button>
     </div>
 
@@ -31,5 +31,5 @@
     <div>
         <input type="submit" value="Valider" [disabled]="contactForm.invalid">
     </div>
-    
+
 </form>

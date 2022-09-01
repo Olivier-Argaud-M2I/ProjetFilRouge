@@ -28,14 +28,14 @@ export class Contact{
         this._collaborator = value;
     }
 
-    private _calendarPrivilege!: CalendarPrivilege[];
-    public get calendarPrivilege(): CalendarPrivilege[] {
-        return this._calendarPrivilege;
+    private _calendarPrivileges!: CalendarPrivilege[];
+    public get calendarPrivileges(): CalendarPrivilege[] {
+        return this._calendarPrivileges;
     }
-    public set calendarPrivilege(value: CalendarPrivilege[]) {
-        this._calendarPrivilege = value;
+    public set calendarPrivileges(value: CalendarPrivilege[]) {
+        this._calendarPrivileges = value;
     }
-   
+
 
     public constructor(init?: Partial<Contact>) {
         Object.assign(this, init);

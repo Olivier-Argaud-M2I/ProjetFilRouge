@@ -1,0 +1,18 @@
+
+<div class="titre">
+    <h1>Bienvenue sur votre site de météo préféré</h1>
+</div>
+<div class="titre">
+    <input type="text" id="idInputVille" placeholder="Saisissez le nom de votre ville" #inputVille (change)="appelMeteo(inputVille.value); inputVille.value=''" >
+</div>
+
+
+
+<div class="wrapper">
+    <!-- <app-meteo-detail *ngFor="let ville of meteoService.listeMeteo" [villeDemandee]="ville" ></app-meteo-detail>  -->
+    <div *ngFor="let ville of meteoService.listeVille">
+        <app-meteo-detail  [donnee]="ville" ></app-meteo-detail>
+        <input type="button" value="Supprimer" (click)="supprimer(ville)">
+    </div>
+
+</div>

@@ -1,0 +1,18 @@
+
+
+<div id="meteo" (click)="detailMeteo(donnee)">
+    <!-- <div id="ville">{{ville}}</div>
+    <div id="temperature">{{temperature}}°C</div>
+    <div id="condition">{{condition}}% d'humidité</div>
+    <img src="{{icon}}" alt=""> -->
+    <div id="ville">{{donnee.city_info.name}}</div>
+    <div id="temperature">{{donnee.current_condition.tmp}}°C</div>
+    <div id="condition">{{donnee.current_condition.humidity}}% d'humidité</div>
+    <img src="{{donnee.current_condition.icon}}" alt="">
+
+    <div *ngIf="toggle" class="wrapper">
+        <app-forecast *ngFor="let forecast of forecasts" [forecast]="forecast" ></app-forecast>
+    </div>
+
+    <!-- <input type="button" value="Supprimer" (click)="supprimer()"> -->
+</div>
