@@ -2,3 +2,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'skygraze';
+    src: url('./assets/fonts/Skygraze.otf') format('opentype');
+}
