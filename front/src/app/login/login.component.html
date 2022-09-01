@@ -1,40 +1,49 @@
-<h1 class="text-3xl font-bold underline">
-    Merci de vous connecter
-</h1>
+<div class="grid grid-cols-3">
+    <div></div>
 
-<form (ngSubmit)="login()" [formGroup]="loginForm">
+    <div class="w-full h-[500px] place-self-center mt-52 rounded-2xl bg-gradient-to-r from-sky-900 to-cyan-700 drop-shadow-2xl border-solid border-2 border-white">
+        <img src="../../assets/pictures/logoSmartPlanner.png" alt="Logo Smart Planner" class="mt-5 mx-auto hover:scale-110">
+        
+        <h1 class="text-center uppercase text-lg font-bold text-white">
+            Identification
+        </h1>
 
-    <div>
-        <label> Username</label>
-    </div>
-    <div>
-        <input type="text" formControlName="userName">
-    </div>
-    <div>
-        <div style="color: red;" *ngIf="loginForm.get('userName')?.dirty  &&  loginForm.get('userName')?.hasError('required')"   > champ obligatoire</div>
-    </div>
-    <div>
-        <div style="color: red;" *ngIf="loginForm.get('userName')?.touched  &&  loginForm.get('userName')?.hasError('minlength')"   > saisie invalide (minimum trois caractères)</div>
-    </div>
-    <div>
-        <label> Password</label>
-    </div>
-    <div>
-        <input type="password" formControlName="password">
-        </div>
-    <div>
-        <div style="color: red;" *ngIf="loginForm.get('password')?.dirty  &&  loginForm.get('password')?.hasError('required')"   > saisie invalide (minimum cinq caractères)</div>
-    </div>
-    <div>
-        <div style="color: red;" *ngIf="loginForm.get('password')?.touched  &&  loginForm.get('password')?.hasError('minlength')"   > saisie invalide (minimum cinq caractères)</div>
+        <form (ngSubmit)="login()" [formGroup]="loginForm">
+
+            <div class="mt-4 text-center text-sm font-bold text-white">
+                <label>Pseudo</label>
+            </div>
+            <div class="text-center mt-1">
+                <input type="text" formControlName="userName"  class="rounded-md text-center">
+            </div>
+            <div class="text-center font-bold uppercase">
+                <div style="color: red;" *ngIf="loginForm.get('userName')?.dirty  &&  loginForm.get('userName')?.hasError('required')"   > champ obligatoire</div>
+            </div>
+            <div class="mt-1 text-center font-bold uppercase">
+                <div style="color: red;" *ngIf="loginForm.get('userName')?.touched  &&  loginForm.get('userName')?.hasError('minlength')"   > saisie invalide <span class="text-xs">(minimum trois caractères)</span></div>
+            </div>
+            <div class="mt-2 text-center text-sm font-bold text-white">
+                <label>Mot de passe</label>
+            </div>
+            <div class="text-center mt-1">
+                <input type="password" formControlName="password" class="rounded-md text-center">
+            </div>
+            <div class="text-center font-bold uppercase">
+                <div style="color: red;" *ngIf="loginForm.get('password')?.dirty  &&  loginForm.get('password')?.hasError('required')"   > saisie invalide (minimum cinq caractères)</div>
+            </div>
+            <div class="text-center font-bold uppercase">
+                <div style="color: red;" *ngIf="loginForm.get('password')?.touched  &&  loginForm.get('password')?.hasError('minlength')"   > saisie invalide <span class="text-xs">(minimum cinq caractères)</span></div>
+            </div>
+
+            <div class="w-[30%] mx-auto mt-6 text-center bg-white bg-contain rounded-2xl p-1.5 uppercase text-lg font-bold hover:scale-110 hover:w-[40%]">
+                <input type="submit" value="Connecter" [disabled]="loginForm.invalid">
+            </div>
+            <div class="">
+                <div style="color: red;" *ngIf="loginError"> Mauvais pseudo / mot de passe</div>
+            </div>
+        
+            
+        </form>
     </div>
 
-    <div>
-        <input type="submit" value="Connecter" [disabled]="loginForm.invalid">
-    </div>
-    <div>
-        <div style="color: red;" *ngIf="loginError"   > Mauvais username/password</div>
-    </div>
-   
-    
-</form>
+</div>
