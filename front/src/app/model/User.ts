@@ -66,13 +66,13 @@ export class User{
         this._role = value;
     }
 
-    private _collaborators: User[] = [];
-    public get collaborators(): User[] {
-        return this._collaborators;
-    }
-    public set collaborators(value: User[]) {
-        this._collaborators = value;
-    }
+    // private _collaborators: User[] = [];
+    // public get collaborators(): User[] {
+    //     return this._collaborators;
+    // }
+    // public set collaborators(value: User[]) {
+    //     this._collaborators = value;
+    // }
 
 
 

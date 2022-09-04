@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Constant } from '../constante';
+import { Constante } from '../constante';
 import { CalendarPrivilege } from '../model/Calendar_Privilege';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { CalendarPrivilege } from '../model/Calendar_Privilege';
 })
 export class CalendarPrivilegeService {
 
-  apiUrl: string = Constant.API_URL;
+  apiUrl: string = Constante.API_URL;
 
   constructor(private http: HttpClient) { }
 

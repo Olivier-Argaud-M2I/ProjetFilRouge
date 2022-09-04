@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
@@ -30,6 +30,7 @@ import { ContactDetailComponent } from './accueil-collab/contact-detail/contact-
 import { MeteoComponent } from './accueil/meteo/meteo.component';
 import { ForecastComponent } from './accueil/meteo/forecast/forecast.component';
 import { MeteoDetailComponent } from './accueil/meteo/meteo-detail/meteo-detail.component';
+import { TokenInterceptor } from './interceptor/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,15 @@ import { MeteoDetailComponent } from './accueil/meteo/meteo-detail/meteo-detail.
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass:TokenInterceptor,
+      multi:true
+    }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
