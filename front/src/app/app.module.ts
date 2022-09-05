@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+// import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
@@ -30,6 +30,7 @@ import { ContactDetailComponent } from './accueil-collab/contact-detail/contact-
 import { MeteoComponent } from './accueil/meteo/meteo.component';
 import { ForecastComponent } from './accueil/meteo/forecast/forecast.component';
 import { MeteoDetailComponent } from './accueil/meteo/meteo-detail/meteo-detail.component';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { MeteoDetailComponent } from './accueil/meteo/meteo-detail/meteo-detail.
     MeteoDetailComponent
 
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
     AppRoutingModule,

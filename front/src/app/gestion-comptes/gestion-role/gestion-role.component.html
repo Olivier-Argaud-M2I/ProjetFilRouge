@@ -1,33 +1,41 @@
-<h1 class="text-3xl font-bold underline">
-    Gestion des roles
-</h1>
+<div class="intro-y box mt-3">
 
-<fieldset>
-    <legend>Création d'un nouveau role</legend>
-    <form (ngSubmit)="create()" [formGroup]="roleForm">
-
-        <div>
-            <label>Nom</label>
-        </div>
-        <div>
-            <input type="text" formControlName="name">
-        </div>
-        <div>
-            <div style="color: red;" *ngIf="roleForm.get('name')?.dirty  &&  roleForm.get('name')?.hasError('required')"   >champ obligatoire</div>
-        </div>
-        <div>
-            <input type="submit" value="Valider" [disabled]="roleForm.invalid">
-        </div>
-
-    </form>
-</fieldset>
-
-<fieldset>
-    <legend>Liste des roles existant</legend>
-
-    <div *ngFor="let role of roles" (click)="editer(role)">
-        <p>{{role.name}}</p>
-        <button (click)="del(role.id)">Supprimer</button>
+    <div class="flex flex-col sm:flex-row items-center p-5 border-b border-darkmode-400">
+        <h1 class="intro-y text-xl font-medium">
+            Gestion des roles
+        </h1>
     </div>
 
-</fieldset>
+
+    <div id="input" class="p-5">
+
+        <div class="preview" style="display: block;">
+            <fieldset>
+                <legend class="font-medium text-lg">Création d'un nouveau role</legend>
+                <form (ngSubmit)="create()" [formGroup]="roleForm">
+
+                    <div class="mt-3">
+                        <input id="regular-form-1" type="text" class="form-control" placeholder="Nom du rôle" formControlName="name">
+                    </div>
+                    <div>
+                        <div *ngIf="roleForm.get('name')?.dirty  &&  roleForm.get('name')?.hasError('required')" class="form-help text-red-900 font-bold">Champ obligatoire</div>
+                    </div>
+                    <div class="mt-3">
+                        <input type="submit" value="Valider" [disabled]="roleForm.invalid" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">
+                    </div>
+
+                </form>
+            </fieldset>
+        
+            <fieldset class="mt-5">
+                <legend class="font-medium text-lg">Liste des roles existant</legend>
+
+                <div *ngFor="let role of roles" (click)="editer(role)" class="mt-2">
+                    <p class="font-medium capitalize">{{role.name}}</p>
+                    <button (click)="del(role.id)"class="btn btn-outline-secondary py-1 px-3">Supprimer</button>
+                </div>
+
+            </fieldset>
+        </div>
+    </div>
+</div>

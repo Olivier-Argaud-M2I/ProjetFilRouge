@@ -1,6 +1,32 @@
-<h1 class="text-3xl font-bold underline">Liste des utilisateurs</h1>
-<div *ngFor="let user of users">
-    <div (click)="editer(user)">{{user.userName + " : "+user.firstName+" "+user.lastName}}</div>
-    <input type="button" value="Editer" (click)="editer(user)" >
-    <input type="button" value="Suppirmer" (click)="supprimer(user)">
+<div class="intro-y box mt-3">
+
+    <div class="flex flex-col sm:flex-row items-center p-5 border-b border-darkmode-400">
+        <h2 class="intro-y text-xl font-medium">
+            Liste d'utilisateurs
+        </h2>
+    </div>
+    <div class="grid grid-cols-12 gap-6">
+
+        <div class="intro-y col-span-12 md:col-span-6">
+
+            <div class="box">
+
+                <div class="flex flex-col lg:flex-row items-center p-5" *ngFor="let user of users">
+
+                    <div class="w-24 h-24 lg:w-12 lg:h-12 image-fit lg:mr-1">
+                        <img alt="Image de profil" class="rounded-full" src="../../../assets/pictures/profile-1.jpg">
+                    </div>
+                    <div class="lg:ml-2 lg:mr-auto text-center lg:text-left mt-3 lg:mt-0">
+                        <a href="" (click)="editer(user)" class="font-medium capitalize">{{user.firstName+" "+user.lastName}}</a> 
+                        <div class="text-slate-500 text-xs mt-0.5">{{user.role.name}}</div>
+                    </div>
+                    <div class="flex mt-4 lg:mt-0">
+                        <button value="Editer" (click)="editer(user)" class="btn btn-primary py-1 px-2 mr-2">Editer</button>
+                        <button value="Suppirmer" (click)="supprimer(user)" class="btn btn-outline-secondary py-1 px-2">Supprimer</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

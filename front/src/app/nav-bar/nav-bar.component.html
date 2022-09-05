@@ -1,18 +1,132 @@
+<div id="app" data-v-app="">
+    <div class="flex mt-[4.7rem] md:mt-0">
 
-<div *ngIf="loginService.isLogged"> Bienvenue {{loginService!.userLogged!.userName}}</div>
-
-<!-- <input *ngIf="!loginService.isLogged" type="button" routerLink="/login" routerLinkActive = "selectedMenu"  value="Login"> -->
-
-
-<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Accueil">
-<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Messagerie">
-<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Profil">
-<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Agenda">
-<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="To do list">
-
-<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Inbox">
-<input type="button" routerLink="/gestionComptes" routerLinkActive = "selectedMenu"  value="Liste Utilsateurs">
+        <nav class="top-nav">
+            
+            <a href="/" class="router-link-active intro-x flex items-center pl-5 pt-4" tag="a">
+                <img alt="SmartPlanner Logo" class="w-36" src="../../assets/pictures/logoSmartPlanner.png">
+            </a>
 
 
-<input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Paramètres">
-<input *ngIf="loginService.isLogged" type="button" (click)="logout()" value="Se déconnecter">
+        
+
+
+        <!-- <div *ngIf="loginService.isLogged"> Bienvenue {{loginService!.userLogged!.userName}}</div> -->
+
+        <!-- <input *ngIf="!loginService.isLogged" type="button" routerLink="/login" routerLinkActive = "selectedMenu"  value="Login"> -->
+
+        <ul>
+            <li>
+                <button routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Accueil" class="top-menu">
+                    <div class="side-menu__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <div class="side-menu__title ml-1">Accueil</div>
+                </button><!---->
+            </li>
+
+
+            <li>
+                <button routerLink="/planning" routerLinkActive = "selectedMenu"  value="Calendrier" class="top-menu">
+                    <div class="side-menu__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </div>
+                    <div class="side-menu__title ml-1">Calendrier</div>
+                </button>
+                <!---->
+            </li>
+
+            <li>
+                <button routerLink="/contactdetail" routerLinkActive = "selectedMenu"  value="Contact" class="top-menu">
+                    <div class="side-menu__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 010 7.75"></path>
+                        </svg>
+                    </div>
+                    <div class="side-menu__title ml-1">Contact</div>
+                </button>
+                <!---->
+            </li>
+
+            <li>
+                <button routerLink="/profil" routerLinkActive = "selectedMenu"  value="Profil" class="top-menu">
+                    <div class="side-menu__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 010 7.75"></path>
+                        </svg>
+                    </div>
+                    <div class="side-menu__title ml-1">Profil</div>
+                </button>
+                <!---->
+            </li>
+
+            <!-- <li class="side-nav__devider my-6"></li> -->
+
+            <li>
+                <button *ngIf="loginService.roleMatch(['cruduser'])" type="button" routerLink="/gestionComptes" routerLinkActive = "selectedMenu"  value="Admin" class="top-menu">
+                    <div class="side-menu__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="aperture" data-lucide="aperture" class="lucide lucide-aperture block mx-auto">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
+                            <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
+                            <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
+                            <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
+                            <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
+                            <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
+                        </svg>
+                    </div>
+                    <div class="side-menu__title ml-1">Administration</div>
+                </button>
+                <!---->
+            </li>  
+
+
+
+            <li>
+                <button *ngIf="loginService.isLogged" (click)="logout()" value="Se déconnecter" class="top-menu">
+                    <div class="side-menu__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="log-out" data-lucide="log-out" class="lucide lucide-log-out block mx-auto">
+                            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                    </div>
+                    <div class="side-menu__title ml-1">Se déconnecter</div>
+                </button>
+                <!---->
+            </li>    
+
+
+
+        </ul>
+
+
+        <!-- <input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Accueil">
+        <input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Messagerie">
+        <input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Profil">
+        <input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Agenda">
+        <input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="To do list">
+
+        <input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Inbox">
+        <input type="button" routerLink="/gestionComptes" routerLinkActive = "selectedMenu"  value="Liste Utilsateurs">
+
+
+        <input type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Paramètres"> -->
+    </nav>
+    </div>
+</div>
+

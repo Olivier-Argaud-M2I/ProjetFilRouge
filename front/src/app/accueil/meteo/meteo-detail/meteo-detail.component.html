@@ -6,13 +6,13 @@
     <div id="condition">{{condition}}% d'humidité</div>
     <img src="{{icon}}" alt=""> -->
     <div id="ville">{{donnee.city_info.name}}</div>
+    <div id="vent">{{donnee.current_condition.condition}}</div>
     <div id="temperature">{{donnee.current_condition.tmp}}°C</div>
-    <div id="condition">{{donnee.current_condition.humidity}}% d'humidité</div>
-    <img src="{{donnee.current_condition.icon}}" alt="">
+    <img src="{{donnee.current_condition.icon_big}}" alt="" class="justify-items-center">
 
-    <div *ngIf="toggle" class="wrapper">
+    <!-- <div *ngIf="toggle" class="wrapper">
         <app-forecast *ngFor="let forecast of forecasts" [forecast]="forecast" ></app-forecast>
-    </div>
+    </div> -->
 
     <!-- <input type="button" value="Supprimer" (click)="supprimer()"> -->
 </div>

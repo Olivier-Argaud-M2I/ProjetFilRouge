@@ -1,49 +1,57 @@
-<div class="grid grid-cols-3">
-    <div></div>
+<div class="login">
 
-    <div class="w-full h-[500px] place-self-center mt-52 rounded-2xl bg-gradient-to-r from-sky-900 to-cyan-700 drop-shadow-2xl border-solid border-2 border-white">
-        <img src="../../assets/pictures/logoSmartPlanner.png" alt="Logo Smart Planner" class="mt-5 mx-auto hover:scale-110">
-        
-        <h1 class="text-center uppercase text-lg font-bold text-white">
-            Identification
-        </h1>
+    <div class="container sm:px-10">
 
-        <form (ngSubmit)="login()" [formGroup]="loginForm">
+        <div class="block xl:grid grid-cols-2 gap-4">
 
-            <div class="mt-4 text-center text-sm font-bold text-white">
-                <label>Pseudo</label>
+            <div class="hidden xl:flex flex-col min-h-screen">
+                <a href="" class="-intro-x flex items-center pt-5">
+                    <img alt="SmartPlanner Logo" class="w-36" src="../../assets/pictures/logoSmartPlanner.png">
+                </a>
+                <div class="my-auto">
+                    <img alt="Illustration " class="-intro-x w-1/2 -mt-16" src="../../assets/pictures/illustration.svg">
+                    <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
+                        Plus que cette étape
+                        <br>
+                        pour accéder à votre compte.
+                    </div>
+                    <div class="-intro-x mt-5 text-lg  text-opacity-70 text-slate-400">Les outils nécessaire pour la gestion de son travail</div>
+                </div>
             </div>
-            <div class="text-center mt-1">
-                <input type="text" formControlName="userName"  class="rounded-md text-center">
-            </div>
-            <div class="text-center font-bold uppercase">
-                <div style="color: red;" *ngIf="loginForm.get('userName')?.dirty  &&  loginForm.get('userName')?.hasError('required')"   > champ obligatoire</div>
-            </div>
-            <div class="mt-1 text-center font-bold uppercase">
-                <div style="color: red;" *ngIf="loginForm.get('userName')?.touched  &&  loginForm.get('userName')?.hasError('minlength')"   > saisie invalide <span class="text-xs">(minimum trois caractères)</span></div>
-            </div>
-            <div class="mt-2 text-center text-sm font-bold text-white">
-                <label>Mot de passe</label>
-            </div>
-            <div class="text-center mt-1">
-                <input type="password" formControlName="password" class="rounded-md text-center">
-            </div>
-            <div class="text-center font-bold uppercase">
-                <div style="color: red;" *ngIf="loginForm.get('password')?.dirty  &&  loginForm.get('password')?.hasError('required')"   > saisie invalide (minimum cinq caractères)</div>
-            </div>
-            <div class="text-center font-bold uppercase">
-                <div style="color: red;" *ngIf="loginForm.get('password')?.touched  &&  loginForm.get('password')?.hasError('minlength')"   > saisie invalide <span class="text-xs">(minimum cinq caractères)</span></div>
-            </div>
-
-            <div class="w-[30%] mx-auto mt-6 text-center bg-white bg-contain rounded-2xl p-1.5 uppercase text-lg font-bold hover:scale-110 hover:w-[40%]">
-                <input type="submit" value="Connecter" [disabled]="loginForm.invalid">
-            </div>
-            <div class="">
-                <div style="color: red;" *ngIf="loginError"> Mauvais pseudo / mot de passe</div>
-            </div>
-        
             
-        </form>
+            <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
+                <div class="my-auto mx-auto xl:ml-20 bg-[#28334E] xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
+                    <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left text-slate-500">
+                        Identification
+                    </h2>
+                    <div class="intro-x mt-2 text-slate-400 xl:hidden text-center">Les outils nécessaire pour la gestion de son travail</div>
+
+                    <form (ngSubmit)="login()" [formGroup]="loginForm" class="intro-x mt-8">
+                        <input type="text" formControlName="userName"  class="intro-x login__input form-control py-3 px-4 block" placeholder="Pseudo">
+
+                        <div *ngIf="loginForm.get('userName')?.dirty  &&  loginForm.get('userName')?.hasError('required')"  class="text-red-900 font-bold"> Champ obligatoire</div>
+                        <div *ngIf="loginForm.get('userName')?.touched  &&  loginForm.get('userName')?.hasError('minlength')" class="text-red-900 font-bold"> Saisie invalide <span class="text-xs">(minimum trois caractères)</span></div>
+
+                        <input type="password" formControlName="password" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Mot de passe">
+
+                        <div *ngIf="loginForm.get('password')?.dirty  &&  loginForm.get('password')?.hasError('required')" class="text-red-900 font-bold"> Saisie invalide</div>
+                        <div *ngIf="loginForm.get('password')?.touched  &&  loginForm.get('password')?.hasError('minlength')" class="text-red-900 font-bold"> Saisie invalide <span class="text-xs">(minimum cinq caractères)</span></div>
+
+                        <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
+                        <input type="submit" value="Connecter" [disabled]="loginForm.invalid" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">
+                        <div *ngIf="loginError" class="text-red-900 font-bold uppercase"> Pseudo et/ou mot de passe incorrect</div>
+                        </div>
+                    </form>
+                    
+                </div>
+
+                
+            </div>
+
+        </div>
+
     </div>
+
+    <script src="dist/js/app.js"></script>
 
 </div>

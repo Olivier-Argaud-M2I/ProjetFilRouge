@@ -18,10 +18,4 @@
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
 }
-input[type='button']{
-    padding: 0.5em;
-    border-radius: 0.5em;
-}
-input[type='button']:hover{
-    background-color: red;
-}
+

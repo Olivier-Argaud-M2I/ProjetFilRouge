@@ -1,53 +1,69 @@
-<h1 class="text-3xl font-bold underline">
-    Création d'un nouvel utilisateur
-</h1>
 
-<form (ngSubmit)="create()" [formGroup]="userForm">
+    <div class="intro-y box">
+        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-darkmode-400">
+            <h2 class="font-medium text-xl mr-auto">
+                Création d'un utilisateur
+            </h2>
+        </div>
 
-    <div>
-        <label>Nom</label>
-    </div>
-    <div>
-        <input type="text" formControlName="lastName">
-    </div>
-    <div>
-        <div style="color: red;" *ngIf="userForm.get('lastName')?.dirty  &&  userForm.get('lastName')?.hasError('required')"   >champ obligatoire</div>
-    </div>
+        <div id="input" class="p-5">
 
-    <div>
-        <label>Prenom</label>
-    </div>
-    <div>
-        <input type="text" formControlName="firstName">
-    </div>
-    <div>
-        <div style="color: red;" *ngIf="userForm.get('firstName')?.dirty  &&  userForm.get('firstName')?.hasError('required')"   >champ obligatoire </div>
-    </div>
+            <div class="preview" style="display: block;">
 
-    <div>
-        <label>Email</label>
-    </div>
-    <div>
-        <input type="text" formControlName="email">
-    </div>
-    <div>
-        <div style="color: red;" *ngIf="userForm.get('email')?.dirty  &&  userForm.get('email')?.hasError('required')"   >champ obligatoire </div>
-    </div>
+                <form (ngSubmit)="create()" [formGroup]="userForm">
+                
+                <div> 
+                    <label for="regular-form-1" class="form-label">Nom d'utilisateur</label> 
+                    <input id="regular-form-1" type="text" class="form-control" placeholder="Nom" formControlName="userName">
+                </div>
+                <div>
+                    <div *ngIf="userForm.get('userName')?.dirty  &&  userForm.get('userName')?.hasError('required')" class="form-help text-red-900 font-bold">Champ obligatoire</div>
+                </div>
 
-    <div>
-        <label>Telephone</label>
-    </div>
-    <div>
-        <input type="text" formControlName="telephone">
-    </div>
-    <div>
-        <div style="color: red;" *ngIf="userForm.get('telephone')?.dirty  &&  userForm.get('telephone')?.hasError('required')"   >champ obligatoire </div>
-    </div>
+                <div class="mt-3"> 
+                    <label for="regular-form-1" class="form-label">Nom</label> 
+                    <input id="regular-form-1" type="text" class="form-control" placeholder="Nom" formControlName="lastName">
+                </div>
+                <div>
+                    <div *ngIf="userForm.get('lastName')?.dirty  &&  userForm.get('lastName')?.hasError('required')" class="form-help text-red-900 font-bold">Champ obligatoire</div>
+                </div>
 
-    <div>
-        <input type="submit" value="Valider" [disabled]="userForm.invalid">
+                <div class="mt-3"> 
+                    <label for="regular-form-1" class="form-label">Prénom</label> 
+                    <input id="regular-form-1" type="text" class="form-control" placeholder="Prénom" formControlName="firstName">
+                </div>
+                <div>
+                    <div *ngIf="userForm.get('firstName')?.dirty  &&  userForm.get('firstName')?.hasError('required')" class="form-help text-red-900 font-bold">Champ obligatoire </div>
+                </div>
+
+                <div class="mt-3"> 
+                    <label for="regular-form-1" class="form-label">Email</label> 
+                    <input id="regular-form-1" type="email" class="form-control" placeholder="Email" formControlName="email"> 
+                </div>
+
+                <div class="mt-3"> 
+                    <label for="regular-form-1" class="form-label">Telephone</label> 
+                    <input id="regular-form-1" type="text" class="form-control" placeholder="Telephone" formControlName="telephone">
+                </div>
+                <div>
+                    <div *ngIf="userForm.get('telephone')?.dirty  &&  userForm.get('telephone')?.hasError('required')" class="form-help text-red-900 font-bold">Champ obligatoire </div>
+                </div>
+
+                <div class="mt-3"> 
+                    <label for="regular-form-1" class="form-label">Mot de passe</label> 
+                    <input id="regular-form-1" type="password" class="form-control" placeholder="Mot de passe" formControlName="motDePasse"> 
+                </div>
+                <div>
+                    <div *ngIf="userForm.get('motDePasse')?.dirty  &&  userForm.get('motDePasse')?.hasError('required')" class="form-help text-red-900 font-bold">Champ obligatoire </div>
+                </div>
+
+
+                <div class="mt-3">
+                    <input type="submit" value="Valider" [disabled]="userForm.invalid" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">
+                </div>
+
+                </form>
+            </div>
+
+        </div>
     </div>
-
-
-
-</form>

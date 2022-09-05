@@ -49,7 +49,7 @@ export class MeteoService {
 
   addVille(ville:Meteo){
 
-    if(this._listeVille.length > 2 ){
+    if(this._listeVille.length > 0 ){
       this._listeVille.splice(0, 1);
     }
     this._listeVille.push(ville); // ajout de la ville à la liste
