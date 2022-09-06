@@ -58,7 +58,7 @@
                         <div class="intro-x mt-2 text-slate-400 text-center">L'application nécessaire pour la gestion de son travail</div>
     
                         <div class="mt-20 intro-x text-2xl xl:text-3xl text-center text-white">
-                            <div *ngIf="loginService.isLogged"> Bonjour <span class="capitalize font-bold">{{loginService!.userLogged!.userName}}</span></div>
+                            <div *ngIf="loginService.isLogged"> Bonjour <span class="capitalize font-bold">{{loginService!.userLogged!.firstName}}</span></div>
                 
                             <div class="text-xl font-bold text-center mt-5">
                                 <input *ngIf="!loginService.isLogged" type="button" routerLink="/login" routerLinkActive = "selectedMenu"  value="Connexion" class="btn btn-primary mt-3 py-3 px-4 w-full xl:w-32 xl:mr-3 xl:mt-0 align-top">
