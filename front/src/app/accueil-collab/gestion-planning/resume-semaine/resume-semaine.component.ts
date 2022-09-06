@@ -31,7 +31,7 @@ export class ResumeSemaineComponent implements OnInit {
     this.eventsService=_eventsService;
     this.loginService=_loginService;
     this.semaine=0;
-    this.tms=Date.now()/1000;
+    this.tms=Math.floor(Date.now()/1000);
     this.refreshEvents();
   }
 
