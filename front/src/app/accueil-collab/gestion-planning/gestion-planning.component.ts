@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-gestion-planning',
@@ -7,28 +7,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestionPlanningComponent implements OnInit {
 
+
+
   calendarView:string;
 
-  constructor() {
+  constructor(private changeDetector: ChangeDetectorRef) {
     this.calendarView = "daily";
+  }
+
+  getNotification(evt:any) {
+    this.refresh();
   }
 
   toDaily(){
     this.calendarView="daily";
-    this.ngOnInit();
+
   }
 
   toWeekly(){
     this.calendarView="weekly";
-    this.ngOnInit();
+
   }
 
   toMonthly(){
     this.calendarView="monthly";
-    this.ngOnInit();
+
   }
 
   ngOnInit(): void {
   }
 
+  refresh(){
+    let temp = this.calendarView;
+    this.calendarView = "false";
+    // now notify angular to check for updates
+    this.changeDetector.detectChanges();
+    // change detection should remove the component now
+    // then we can enable it again to create a new instance
+    this.calendarView = temp;
+  }
 }

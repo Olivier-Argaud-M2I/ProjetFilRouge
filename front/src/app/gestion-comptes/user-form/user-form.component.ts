@@ -54,8 +54,8 @@ export class UserFormComponent implements OnInit {
     this.reset();
     this.userService.saveUser(user).subscribe(
       ()=>{
-        this.notifyParent.emit('Some value to send to the parent');
-        this.router.navigate(['gestionComptes']);
+        this.notifyParent.emit('refresh');
+        // this.router.navigate(['gestionComptes']);
       }
     );
 
