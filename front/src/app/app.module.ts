@@ -3,18 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
+
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-
-
-
-
-
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { LoginComponent } from './login/login.component';
 import { AccueilCollabComponent } from './accueil-collab/accueil-collab.component';
 import { GestionComptesComponent } from './gestion-comptes/gestion-comptes.component';
-import { ResumeJourneeComponent } from './accueil-collab/resume-journee/resume-journee.component';
+import { ResumeJourneeComponent } from './accueil-collab/gestion-planning/resume-journee/resume-journee.component';
+import { ResumeSemaineComponent } from './accueil-collab/gestion-planning/resume-semaine/resume-semaine.component';
+import { ResumeMoisComponent } from './accueil-collab/gestion-planning/resume-mois/resume-mois.component';
+import { EventFormComponent } from './accueil-collab/gestion-planning/event-form/event-form.component';
 import { ProfilComponent } from './profil/profil.component';
 import { ContactComponent } from './accueil-collab/contact/contact.component';
 import { MessagerieComponent } from './accueil-collab/messagerie/messagerie.component';
@@ -42,6 +41,9 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     AccueilCollabComponent,
     GestionComptesComponent,
     ResumeJourneeComponent,
+    ResumeSemaineComponent,
+    ResumeMoisComponent,
+    EventFormComponent,
     ProfilComponent,
     ContactComponent,
     MessagerieComponent,
