@@ -1,0 +1,32 @@
+<!-- <div>
+  <div>
+    <button class="button" (click)="">Jour précédent</button>
+  </div>
+  <div>
+    <button class="button" (click)="">Jour suivant</button>
+  </div>
+</div> -->
+
+<div id="divListe">
+  <div>
+    <h1 id="titreResumeDay">RESUME QUOTIDIEN DES EVENEMENTS</h1><br>
+  </div>
+  <ul>
+    <li id="divElement" *ngFor="let event of this.eventsList" [value]="event">
+      <fieldset>
+        <div>
+          <h3>{{event.date_debut_timestamp*1000 | date: 'dd/MM/yyyy HH:mm'}}</h3>
+          <p>Tâche : {{event.name + " : "+event.description}}</p>
+          <p>Description : {{event.description}}</p>
+        </div>
+        <div id="subDivElement">
+          <button class="button" (click)="editer(event)">Modifier</button>
+          <button class="button" (click)="del(event.id)">Supprimer</button>
+        </div>
+      </fieldset>
+    </li><br>
+  </ul>
+  <div>
+    <p class="button" (click)="refreshEventsNow()">Rafraichir</p>
+  </div>
+</div>

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarOptions, defineFullCalendarElement } from '@fullcalendar/web-component';
-import dayGridPlugin from '@fullcalendar/daygrid';
-
-
+import { EventFormComponent } from "./event-form/event-form.component";
 
 @Component({
   selector: 'app-gestion-planning',
