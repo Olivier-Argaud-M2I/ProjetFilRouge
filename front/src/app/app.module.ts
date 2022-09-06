@@ -1,4 +1,4 @@
-// import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
@@ -31,12 +31,8 @@ import { MeteoComponent } from './accueil/meteo/meteo.component';
 import { ForecastComponent } from './accueil/meteo/forecast/forecast.component';
 import { MeteoDetailComponent } from './accueil/meteo/meteo-detail/meteo-detail.component';
 import { TokenInterceptor } from './interceptor/token.interceptor';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-<<<<<<< HEAD
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-=======
-import { TokenInterceptor } from './interceptor/token.interceptor';
->>>>>>> a2fd3b4b94a63158fee10601cea0bdb84bc3832d
+// import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 
 @NgModule({
   declarations: [
@@ -63,7 +59,6 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     MeteoDetailComponent
 
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
     AppRoutingModule,
