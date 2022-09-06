@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Constant } from '../constante';
+import { Constante } from '../constante';
 import { Privilege } from '../model/Privilege';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { Privilege } from '../model/Privilege';
 })
 export class PrivilegeService {
 
-  apiUrl: string = Constant.API_URL;
+  apiUrl: string = Constante.API_URL;
 
   constructor(private http: HttpClient) { }
 

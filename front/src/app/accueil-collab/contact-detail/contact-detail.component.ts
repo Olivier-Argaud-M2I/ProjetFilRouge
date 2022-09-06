@@ -1,9 +1,8 @@
-import { TmplAstVariable } from '@angular/compiler';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CalendarPrivilege } from 'src/app/model/Calendar_Privilege';
 import { Contact } from 'src/app/model/Contact';
-import { User } from 'src/app/model/User';
 import { CalendarPrivilegeService } from 'src/app/service/calendar-privilege.service';
 import { ContactService } from 'src/app/service/contact.service';
 import { UserService } from 'src/app/service/user.service';
@@ -30,8 +29,8 @@ export class ContactDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getContact();
-    this.getUserPrivileges();
-    this.getAllprivileges();
+    // this.getUserPrivileges();
+    // this.getAllprivileges();
   }
 
 
@@ -43,6 +42,7 @@ export class ContactDetailComponent implements OnInit {
         (response)=>{
           if(response!=null){
             this.contact = response
+            this.getAllprivileges()
           }
           // this.getPrivileges();
         }
@@ -63,6 +63,7 @@ export class ContactDetailComponent implements OnInit {
     this.calendarPrivilegeService.getCalendarPrivileges().subscribe(
       (response)=>{
         this.calendarPrivileges = response;
+        this.getUserPrivileges()
       }
     )
   }
@@ -70,7 +71,7 @@ export class ContactDetailComponent implements OnInit {
 
 
   changeCheckbox(evt:any,calendarPrivilege:CalendarPrivilege) {
-    calendarPrivilege.status = evt.target.checked;
+    // calendarPrivilege.status = evt.target.checked;
     if(evt.target.checked){
       this.contact.calendarPrivileges.push(calendarPrivilege)
     }
