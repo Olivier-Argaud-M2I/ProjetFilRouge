@@ -51,7 +51,7 @@
 
                 <div class="mt-3">
                     <label for="regular-form-6" class="form-label">Mot de passe</label>
-                    <input id="regular-form-6" type="password" class="form-control" placeholder="Mot de passe" formControlName="motDePasse">
+                    <input id="regular-form-6" type="password" class="form-control" placeholder="Mot de passe" formControlName="password">
                 </div>
                 <div>
                     <div *ngIf="userForm.get('motDePasse')?.dirty  &&  userForm.get('motDePasse')?.hasError('required')" class="form-help text-red-900 font-bold">Champ obligatoire </div>

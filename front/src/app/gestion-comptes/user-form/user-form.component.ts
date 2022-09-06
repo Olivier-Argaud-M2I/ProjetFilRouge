@@ -11,7 +11,6 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class UserFormComponent implements OnInit {
 
-
   firstnameCtrl = this.fb.control('',[Validators.required]);
   lastnameCtrl = this.fb.control('',[Validators.required]);
   emailCtrl = this.fb.control('',[Validators.required]);
@@ -20,10 +19,12 @@ export class UserFormComponent implements OnInit {
   motDePasseCtrl = this.fb.control('',[Validators.required]);
 
   userForm = this.fb.group({
+    userName: this.usernameCtrl,
     firstName:this.firstnameCtrl,
     lastName:this.lastnameCtrl,
     email:this.emailCtrl,
     telephone:this.telephoneCtrl,
+    password: this.motDePasseCtrl,
 
 
   });
@@ -42,8 +43,8 @@ export class UserFormComponent implements OnInit {
   create(){
 
     let user:User = this.userForm.value as User;
-    user.password = user.firstName;
-    user.userName = user.firstName.charAt(0)+user.lastName;
+    // user.password = user.firstName;
+    // user.userName = user.firstName.charAt(0)+user.lastName;
     this.reset();
     this.userService.saveUser(user).subscribe(
       ()=>this.router.navigate(['gestionComptes'])

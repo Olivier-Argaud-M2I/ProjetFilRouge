@@ -13,12 +13,16 @@ export class UserListComponent implements OnInit {
 
   users: User[]= [];
 
-  constructor(private userService:UserService,private router:Router) { 
+  constructor(private userService:UserService,private router:Router) {
 
   }
 
   ngOnInit(): void {
     this.refreshUser();
+  }
+
+  ngOnChanges():void {
+    this.ngOnInit();
   }
 
   editer(user:User){
