@@ -4,8 +4,8 @@
 <div class="intro-y box mt-3">
     <div class="flex flex-col sm:flex-row items-center p-5 border-b border-darkmode-400">
         <h1 class="intro-y text-lg font-medium" *ngIf="user!=null">
-            Modification de l'utilisateur <br>
-            <span class="capitalize">{{user.lastName}}  {{user.firstName}}</span>
+            Modification de l'utilisateur <br><br>
+            <span class="text-xl font-normal capitalize">{{user.lastName}}  {{user.firstName}}</span>
         </h1>
     </div>
     <div class="modal-body relative p-4">
@@ -17,31 +17,31 @@
                 <input id="regular-form-1" class="form-control" type="text" formControlName="lastName">
             </div>
             <div>
-                <div style="color: red;" *ngIf="userForm.get('lastName')?.dirty  &&  userForm.get('lastName')?.hasError('required')"   >champ obligatoire</div>
+                <div *ngIf="userForm.get('lastName')?.dirty  &&  userForm.get('lastName')?.hasError('required')" class="text-red-900 font-bold">Champ obligatoire</div>
             </div>
 
-            <div>
+            <div class="mt-3">
                 <label for="regular-form-2" class="form-label">Prenom</label>
             </div>
             <div>
                 <input id="regular-form-2" class="form-control" type="text" formControlName="firstName">
                 </div>
             <div>
-                <div style="color: red;" *ngIf="userForm.get('firstName')?.dirty  &&  userForm.get('firstName')?.hasError('required')"   >champ obligatoire </div>
+                <div *ngIf="userForm.get('firstName')?.dirty  &&  userForm.get('firstName')?.hasError('required')" class="text-red-900 font-bold">Champ obligatoire </div>
             </div>
 
-            <div>
+            <div class="mt-3">
                 <label for="regular-form-3" class="form-label">Nom d'utilisateur</label>
             </div>
             <div>
                 <input id="regular-form-3" class="form-control" type="text" formControlName="userName">
                 </div>
             <div>
-                <div style="color: red;" *ngIf="userForm.get('userName')?.dirty  &&  userForm.get('userName')?.hasError('required')"   >champ obligatoire </div>
+                <div *ngIf="userForm.get('userName')?.dirty  &&  userForm.get('userName')?.hasError('required')" class="text-red-900 font-bold">Champ obligatoire </div>
             </div>
 
 
-            <div>
+            <div class="mt-3">
                 <label for="regular-form-4" class="form-label">Role de l'utilisateur</label>
             </div>
             <div>
@@ -53,7 +53,7 @@
             </div>
 
             <div class="mt-3">
-                <button type="button" value="Admin" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top hover:bg-red-700 " data-bs-dismiss="modal">
+                <button type="button" routerLink="/gestionComptes" routerLinkActive = "selectedMenu" value="Admin" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top hover:bg-red-700 " data-bs-dismiss="modal">
                     Annuler
                 </button>
                 <button type="submit" value="Valider" [disabled]="userForm.invalid" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top hover:bg-green-700">

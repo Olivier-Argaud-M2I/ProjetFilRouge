@@ -16,10 +16,18 @@ export class ResumeSemaineComponent implements OnInit {
   eventsService:EventsService;
   loginService:LoginService;
 
+  // Ces variables contiendront les date à afficher
+  // dateToShowBegin:String;
+  // dateToShowEnd:String;
+
+  // Ces variable contiendront les date en leur format complet
+  // currentDateBegin:Date;
+  // currentDateEnd:Date;
+
   // La variable jour sert de compteur pour naviguer entre les jours
   semaine:number;
 
-  // Le timestamp d'ancrage dans le mois traité, il est en seconde donc /1000
+  // Les timestamp d'ancrage dans la semaine permettent d'obtenir les tms
   tms:number;
 
   constructor(
@@ -54,6 +62,7 @@ export class ResumeSemaineComponent implements OnInit {
         this.eventsList = response;
       }
     )
+    this.ngOnInit();
   }
 
   nextWeek(){
@@ -72,4 +81,9 @@ export class ResumeSemaineComponent implements OnInit {
     this.router.navigate(['event/'+event.id]);
   }
 
+  reset(){
+    this.semaine=0;
+    this.tms=Math.floor(Date.now()/1000);
+    this.refreshEvents()
+  }
 }
