@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/User';
@@ -10,6 +10,12 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
+
+  @Output() notifyParent: EventEmitter<any> = new EventEmitter();
+
+  // sendNotification() {
+  //   this.notifyParent.emit('Some value to send to the parent');
+  // }
 
   firstnameCtrl = this.fb.control('',[Validators.required]);
   lastnameCtrl = this.fb.control('',[Validators.required]);
@@ -47,7 +53,10 @@ export class UserFormComponent implements OnInit {
     // user.userName = user.firstName.charAt(0)+user.lastName;
     this.reset();
     this.userService.saveUser(user).subscribe(
-      ()=>this.router.navigate(['gestionComptes'])
+      ()=>{
+        this.notifyParent.emit('Some value to send to the parent');
+        this.router.navigate(['gestionComptes']);
+      }
     );
 
   }
