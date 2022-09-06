@@ -65,15 +65,15 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
         }
         else{
           // this.loginError = true;
-          // setTimeout(()=>{                      
+          // setTimeout(()=>{
           //   this.loginError = false;
           // }, 3000);
         }
-       
+
       }
     )
   }
- 
+
 
 
   logOut(){
@@ -101,10 +101,14 @@ export class LoginService implements CanActivate,CanDeactivate<any>{
   }
 
 
-  
-    
+
+
   logUser(user:User){
     return this.http.post<JwtResponse>(this.apiUrl+"/jwt/log",user)
+  }
+
+  changePwd(user:User){
+    return this.http.post<JwtResponse>(this.apiUrl+"/jwt/changePwd",user)
   }
 
 }
