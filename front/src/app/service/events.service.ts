@@ -61,9 +61,18 @@ export class EventsService implements CanActivate,CanDeactivate<any>{
     return this.http.post<Events>(this.apiUrl+"/events/delete/"+id,null);
   }
 
-  // Tous les évènements par jour et par user (pour admin)
+  // Tous les évènements par jour et par user
   getEventsByDayAndUserId(timestamp:number,id:number){
     return this.http.get<Events[]>(this.apiUrl+"/events/allByDayAndUserId/"+id+"/"+timestamp);
+  }
+
+  // Tous les évènements par jour et par user (pour admin)
+  getEventsByWeekAndUserId(timestamp:number,id:number){
+    return this.http.get<Events[]>(this.apiUrl+"/events/allByWeekAndUserId/"+id+"/"+timestamp);
+  }
+  // Tous les évènements par jour et par user (pour admin)
+  getEventsByMonthAndUserId(timestamp:number,id:number){
+    return this.http.get<Events[]>(this.apiUrl+"/events/allByMonthAndUserId/"+id+"/"+timestamp);
   }
 
 }

@@ -49,8 +49,6 @@ export class EventFormComponent implements OnInit {
 
   verifyDate(){
 
-
-
   }
 
 }

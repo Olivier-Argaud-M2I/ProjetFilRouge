@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/User';
 import { LoginService } from 'src/app/service/login.service';
@@ -11,14 +11,14 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class UserListComponent implements OnInit {
 
-  users: User[]= [];
+  @Input() users: User[]= [];
 
   constructor(private userService:UserService,private router:Router) {
 
   }
 
   ngOnInit(): void {
-    this.refreshUser();
+
   }
 
   ngOnChanges():void {
@@ -34,7 +34,6 @@ export class UserListComponent implements OnInit {
       ()=>this.refreshUser()
       );
   }
-
 
   refreshUser(){
     this.userService.getUsers().subscribe(

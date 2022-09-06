@@ -2,13 +2,23 @@
   <div>
     <h1 id="titreResumeWeek">RESUME MENSUEL DES EVENEMENTS</h1><br>
   </div>
+  <div>
+    <p>{{actualMonth}}</p>
+  </div>
+  <div>
+    <button class="button" (click)="previousMonth()">Précédent</button>
+    <button class="button" (click)="nextMonth()">Suivant</button>
+  </div>
+  <div *ngIf="eventsList.length === 0">
+    <p>Aucun évènement à afficher...</p>
+  </div>
   <ul>
     <li id="divElement" *ngFor="let event of this.eventsList" [value]="event">
       <fieldset>
         <div>
           <h3>{{event.date_debut_timestamp*1000 | date: 'dd/MM/yyyy HH:mm'}}</h3>
-          <p>Tâche : {{event.name + " : "+event.description}}</p>
-          <p>Description : {{event.description}}</p>
+          <p>{{event.name}}</p>
+          <p>{{event.description}}</p>
         </div>
         <div id="subDivElement">
           <button class="button" (click)="editer(event)">Modifier</button>
@@ -17,8 +27,8 @@
       </fieldset>
     </li><br>
   </ul>
-  <div>
-    <p class="button" (click)="refreshEvents()">Rafraichir</p>
+  <div *ngIf="mois!==0">
+    <p class="button" (click)="reset()">Revenir au mois actuel</p>
   </div>
 </div>
 

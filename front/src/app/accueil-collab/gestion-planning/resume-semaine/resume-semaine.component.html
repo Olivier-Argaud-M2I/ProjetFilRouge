@@ -1,14 +1,22 @@
 <div id="divListe">
   <div>
     <h1 id="titreResumeWeek">RESUME HEBDOMADAIRE DES EVENEMENTS</h1><br>
+    <div>
+      <!--p>Semaine du {{dateToShowBegin}} au {{dateToShowEnd}}</p-->
+    </div>
+    <button class="button" (click)="previousWeek()">Précédent</button>
+    <button class="button" (click)="nextWeek()">Suivant</button>
+  </div>
+  <div *ngIf="eventsList.length === 0">
+    <p>Aucun évènement à afficher...</p>
   </div>
   <ul>
     <li id="divElement" *ngFor="let event of this.eventsList" [value]="event">
       <fieldset>
         <div>
           <h3>{{event.date_debut_timestamp*1000 | date: 'dd/MM/yyyy HH:mm'}}</h3>
-          <p>Tâche : {{event.name + " : "+event.description}}</p>
-          <p>Description : {{event.description}}</p>
+          <p>{{event.name}}</p>
+          <p>{{event.description}}</p>
         </div>
         <div id="subDivElement">
           <button class="button" (click)="editer(event)">Modifier</button>
@@ -17,8 +25,8 @@
       </fieldset>
     </li><br>
   </ul>
-  <div>
-    <p class="button" (click)="refreshEvents()">Rafraichir</p>
+  <div *ngIf="semaine!==0">
+    <button class="button" (click)="reset()">Revenir à la semaine en cours</button>
   </div>
 </div>
 

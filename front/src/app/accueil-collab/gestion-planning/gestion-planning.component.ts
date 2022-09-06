@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { CalendarOptions, defineFullCalendarElement } from '@fullcalendar/web-component';
-// import dayGridPlugin from '@fullcalendar/daygrid';
-
-
 
 @Component({
   selector: 'app-gestion-planning',
@@ -11,7 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestionPlanningComponent implements OnInit {
 
-  constructor() { }
+  calendarView:string;
+
+  constructor() {
+    this.calendarView = "daily";
+  }
+
+  toDaily(){
+    this.calendarView="daily";
+    this.ngOnInit();
+  }
+
+  toWeekly(){
+    this.calendarView="weekly";
+    this.ngOnInit();
+  }
+
+  toMonthly(){
+    this.calendarView="monthly";
+    this.ngOnInit();
+  }
 
   ngOnInit(): void {
   }
