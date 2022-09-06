@@ -19,33 +19,33 @@
             <div>
                 <div style="color: red;" *ngIf="userForm.get('lastName')?.dirty  &&  userForm.get('lastName')?.hasError('required')"   >champ obligatoire</div>
             </div>
-            
+
             <div>
-                <label for="regular-form-1" class="form-label">Prenom</label>
+                <label for="regular-form-2" class="form-label">Prenom</label>
             </div>
             <div>
-                <input id="regular-form-1" class="form-control" type="text" formControlName="firstName">
+                <input id="regular-form-2" class="form-control" type="text" formControlName="firstName">
                 </div>
             <div>
                 <div style="color: red;" *ngIf="userForm.get('firstName')?.dirty  &&  userForm.get('firstName')?.hasError('required')"   >champ obligatoire </div>
             </div>
-        
+
             <div>
-                <label for="regular-form-1" class="form-label">Nom d'utilisateur</label>
+                <label for="regular-form-3" class="form-label">Nom d'utilisateur</label>
             </div>
             <div>
-                <input id="regular-form-1" class="form-control" type="text" formControlName="userName">
+                <input id="regular-form-3" class="form-control" type="text" formControlName="userName">
                 </div>
             <div>
                 <div style="color: red;" *ngIf="userForm.get('userName')?.dirty  &&  userForm.get('userName')?.hasError('required')"   >champ obligatoire </div>
             </div>
-        
-        
+
+
             <div>
-                <label for="regular-form-1" class="form-label">Role de l'utilisateur</label>
+                <label for="regular-form-4" class="form-label">Role de l'utilisateur</label>
             </div>
             <div>
-                <select id="regular-form-1" class="form-control" name="role" id="role" formControlName="role">
+                <select id="regular-form-4" class="form-control" name="role" id="role" formControlName="role">
                     <option *ngFor="let role of roles; let k = index" [ngValue]="role">
                         {{role.name}}
                     </option>
@@ -61,21 +61,7 @@
                 </button>
             </div>
 
-            <div >
-                <label for="role">Role de l'utilisateur 2</label>
-                <select name="role" id="role" formControlName="role">
-                <option value=""></option>
-                <option *ngFor="let role of roles; let k = index" [ngValue]="roles[k]">{{ roles[k].name }}</option>
-                </select>
-            </div>
-
-
-            <div>
-                <input type="submit" value="Valider" [disabled]="userForm.invalid">
-            </div>
-   
-    
         </form>
     </div>
-    
+
 </div>

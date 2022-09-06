@@ -16,7 +16,8 @@ export class UserFormComponent implements OnInit {
   lastnameCtrl = this.fb.control('',[Validators.required]);
   emailCtrl = this.fb.control('',[Validators.required]);
   telephoneCtrl = this.fb.control('',[Validators.required]);
-
+  usernameCtrl = this.fb.control('',[Validators.required]);
+  motDePasseCtrl = this.fb.control('',[Validators.required]);
 
   userForm = this.fb.group({
     firstName:this.firstnameCtrl,
