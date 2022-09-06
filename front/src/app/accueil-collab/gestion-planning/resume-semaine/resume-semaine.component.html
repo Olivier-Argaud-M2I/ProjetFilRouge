@@ -2,6 +2,10 @@
   <div>
     <h1 id="titreResumeWeek">RESUME HEBDOMADAIRE DES EVENEMENTS</h1><br>
   </div>
+  <div>
+    <button class="button" (click)="previousWeek()">Précédent</button>
+    <button class="button" (click)="nextWeek()">Suivant</button>
+  </div>
   <ul>
     <li id="divElement" *ngFor="let event of this.eventsList" [value]="event">
       <fieldset>
@@ -18,7 +22,7 @@
     </li><br>
   </ul>
   <div>
-    <p class="button" (click)="refreshEvents()">Rafraichir</p>
+    <button class="button" (click)="refreshEvents()">Rafraichir</button>
   </div>
 </div>
 

@@ -20,6 +20,12 @@ export class ResumeJourneeComponent implements OnInit {
   eventsService:EventsService;
   loginService:LoginService;
 
+  // La variable jour sert de compteur pour naviguer entre les jours
+  jour:number;
+
+  // Le timestamp d'ancrage dans le mois traité, il est en seconde donc /1000
+  tms:number;
+
   constructor(
     private fb:FormBuilder,
     private _eventsService:EventsService,
@@ -28,7 +34,9 @@ export class ResumeJourneeComponent implements OnInit {
   ) {
     this.eventsService=_eventsService;
     this.loginService=_loginService;
-    this.refreshEvents(Math.floor(Date.now()/1000),this.loginService.userLogged?.id!);
+    this.jour = 0;
+    this.tms = Math.floor(Date.now()/1000);
+    this.refreshEvents();
   }
 
 
@@ -39,27 +47,34 @@ export class ResumeJourneeComponent implements OnInit {
   del(id:number){
     this.eventsService.deleteEvent(id).subscribe(
       ()=>{
-        this.refreshEvents(Math.floor(Date.now()/1000),this.loginService.userLogged?.id!);
+        this.refreshEvents();
       }
     );
   }
 
-  refreshEvents(timestamp:number,idUser:number){
-    this.eventsService.getEventsByDayAndUserId(timestamp,idUser).subscribe(
+  refreshEvents(){
+    this.eventsService.getEventsByDayAndUserId(this.tms,this.loginService.userLogged?.id!).subscribe(
       (response)=>{
         this.eventsList = response;
       }
     )
   }
 
+  nextDay(){
+    this.jour+=1;
+    this.tms+=86400; // 86400 1 jour en plus en seconde
+    this.refreshEvents();
+  }
+
+  previousDay(){
+    this.jour-=1;
+    this.tms-=86400;
+    this.refreshEvents();
+  }
+
   editer(event:Events){
     this.router.navigate(['event/'+event.id]);
   }
 
-  refreshEventsNow(){
-
-    this.refreshEvents(Math.floor(Date.now()/1000),this.loginService.userLogged?.id!);
-
-  }
 
 }
