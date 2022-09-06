@@ -15,6 +15,8 @@ import { GestionPlanningComponent } from './accueil-collab/gestion-planning/gest
 import { RoleDetailComponent } from './gestion-comptes/role-detail/role-detail.component';
 import { ContactDetailComponent } from './accueil-collab/contact-detail/contact-detail.component';
 
+import { ProfilComponent } from './profil/profil.component';
+
 
 const routes: Routes = [
 
@@ -27,6 +29,7 @@ const routes: Routes = [
   { path: 'contactdetail/:id',    component: ContactDetailComponent,      canActivate:[LoginService] , data:{roles:['Admin']}       },
   { path: 'accueilCollab',        component: AccueilCollabComponent,      canActivate:[LoginService]                                },
   { path: 'planning',             component: GestionPlanningComponent,    canActivate:[LoginService]                                },
+  { path: 'profil',               component: ProfilComponent,             canActivate:[LoginService]                                },
 
 ];
 
