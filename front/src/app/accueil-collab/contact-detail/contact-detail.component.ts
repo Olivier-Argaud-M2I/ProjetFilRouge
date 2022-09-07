@@ -20,6 +20,8 @@ export class ContactDetailComponent implements OnInit {
 
   calendarPrivileges:CalendarPrivilege[]=[];
 
+  valid:boolean=false;
+
   constructor(
     private userService:UserService,
     private contactService:ContactService,
@@ -52,7 +54,12 @@ export class ContactDetailComponent implements OnInit {
 
   getUserPrivileges(){
     this.contactService.getContact(this.contact.collaborator.id,this.contact.user.id).subscribe(
-      (cont)=>this.userPrivileges = cont.calendarPrivileges
+      (cont)=>{
+        this.userPrivileges = cont.calendarPrivileges;
+        if(this.userPrivileges.filter((priv)=>priv.name === "readEvent").length>0){
+          this.valid = true;
+        }
+      }
     )
 
 

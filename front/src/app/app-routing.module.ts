@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'gestionComptes',       component: GestionComptesComponent,     canActivate:[LoginService] , data:{roles:['Admin']}       },
   { path: 'userdetail/:id',       component: UserDetailComponent,         canActivate:[LoginService] , data:{roles:['Admin']}       },
   { path: 'roledetail/:id',       component: RoleDetailComponent,         canActivate:[LoginService] , data:{roles:['Admin']}       },
-  { path: 'contactdetail/:id',    component: ContactDetailComponent,      canActivate:[LoginService] , data:{roles:['Admin']}       },
+  { path: 'contactdetail/:id',    component: ContactDetailComponent,      canActivate:[LoginService] , data:{roles:['Admin','contactUpdate']}       },
   { path: 'accueilCollab',        component: AccueilCollabComponent,      canActivate:[LoginService]                                },
   { path: 'planning',             component: GestionPlanningComponent,    canActivate:[LoginService]                                },
   { path: 'profil',               component: ProfilComponent,             canActivate:[LoginService]                                },
