@@ -5,7 +5,6 @@ import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {LoginService} from "../../../service/login.service";
 import * as moment from "moment/moment";
-import {months} from "moment/moment";
 
 @Component({
   selector: 'app-resume-mois',
@@ -79,16 +78,16 @@ export class ResumeMoisComponent implements OnInit {
 
   nextMonth(){
     this.mois+=1;
-    this.tms+=2764800; // 32 jour en secondes 604800 + 200 sec par sécurité
-    this.date.setMonth(this.date.getMonth()+1);
+    this.date = moment(this.date).add(1,"month").toDate();
+    this.tms = Math.floor(this.date.getTime()/1000);
     this.actualMonth = moment(this.date).format('MMMM');
     this.refreshEvents();
   }
 
   previousMonth(){
     this.mois-=1;
-    this.tms-=2764800;
-    this.date.setMonth(this.date.getMonth()-1);
+    this.date = moment(this.date).add(-1,"month").toDate();
+    this.tms=Math.floor(this.date.getTime()/1000);
     this.actualMonth = moment(this.date).format('MMMM');
     this.refreshEvents();
   }
