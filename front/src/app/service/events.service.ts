@@ -15,19 +15,11 @@ import {Events} from "../model/Events";
 @Injectable({
   providedIn: 'root'
 })
-export class EventsService implements CanActivate,CanDeactivate<any>{
+export class EventsService{
 
   apiUrl: string = Constante.API_URL;
 
   constructor(private router:Router,private http: HttpClient) {
-  }
-
-  canDeactivate(component: any, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot | undefined): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | any{
-    return null;
-  }
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | any {
-    return null;
   }
 
   // Un évènement pour un id
@@ -51,7 +43,7 @@ export class EventsService implements CanActivate,CanDeactivate<any>{
   }
 
   // Mettre à jour un évènement
-  updateEvent(formData:Events){
+  updateEvent(formData:any){
     console.log(formData);
     return this.http.post<Events>(this.apiUrl+"/events/update",formData);
   }
