@@ -18,6 +18,7 @@ import {DateManipulation} from "../../../util/DateManipulation";
   providedIn: 'root'
 })
 export class ResumeJourneeComponent implements OnInit {
+  @Input()id:number = 1;
 
   eventsList: Events[] = [];
   eventsService:EventsService;
@@ -70,7 +71,7 @@ export class ResumeJourneeComponent implements OnInit {
   }
 
   refreshEvents(){
-    this.eventsService.getEventsByDayAndUserId(this.tms,this.loginService.userLogged?.id!).subscribe(
+    this.eventsService.getEventsByDayAndUserId(this.tms,this.id).subscribe(
       (response)=>{
         this.eventsList = response;
       }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {LoginService} from "../service/login.service";
 
 @Component({
   selector: 'app-accueil-collab',
@@ -9,9 +10,14 @@ import { Router } from '@angular/router';
 export class AccueilCollabComponent implements OnInit {
 
   router:Router
+  id;
 
-  constructor(private _router:Router) {
+  constructor(
+    private _router:Router,
+    private loginService:LoginService
+  ) {
     this.router = _router;
+    this.id =loginService.userLogged!.id;
    }
 
   ngOnInit(): void {

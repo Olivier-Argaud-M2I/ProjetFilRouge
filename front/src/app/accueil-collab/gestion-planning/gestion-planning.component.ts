@@ -1,4 +1,6 @@
 import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {LoginService} from "../../service/login.service";
 
 @Component({
   selector: 'app-gestion-planning',
@@ -8,11 +10,16 @@ import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angul
 export class GestionPlanningComponent implements OnInit {
 
 
+  id:number=this.logingSErvice.userLogged!.id;
 
   calendarView:string;
 
-  constructor(private changeDetector: ChangeDetectorRef) {
-    this.calendarView = "daily";
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    private route: ActivatedRoute,
+    private logingSErvice:LoginService
+    ) {
+    this.calendarView = "false";
   }
 
   getNotification(evt:any) {
@@ -35,6 +42,8 @@ export class GestionPlanningComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.calendarView="daily";
   }
 
   refresh(){

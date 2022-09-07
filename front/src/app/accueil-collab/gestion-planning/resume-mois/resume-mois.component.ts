@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Events} from "../../../model/Events";
 import {EventsService} from "../../../service/events.service";
 import {FormBuilder} from "@angular/forms";
@@ -12,6 +12,7 @@ import * as moment from "moment/moment";
   styleUrls: ['./resume-mois.component.css']
 })
 export class ResumeMoisComponent implements OnInit {
+  @Input()id:number = 1;
 
   eventsList: Events[] = [];
   eventsService:EventsService;
@@ -68,7 +69,7 @@ export class ResumeMoisComponent implements OnInit {
   }
 
   refreshEvents(){
-    this.eventsService.getEventsByMonthAndUserId(this.tms,this.loginService.userLogged?.id!).subscribe(
+    this.eventsService.getEventsByMonthAndUserId(this.tms,this.id).subscribe(
       (response)=>{
         this.eventsList = response;
       }

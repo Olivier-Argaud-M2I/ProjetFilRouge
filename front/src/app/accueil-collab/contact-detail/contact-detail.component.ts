@@ -14,6 +14,8 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ContactDetailComponent implements OnInit {
 
+  link="";
+
   contact!: Contact;
 
   userPrivileges:CalendarPrivilege[]=[];
@@ -58,6 +60,7 @@ export class ContactDetailComponent implements OnInit {
         this.userPrivileges = cont.calendarPrivileges;
         if(this.userPrivileges.filter((priv)=>priv.name === "readEvent").length>0){
           this.valid = true;
+          this.link = "/planning/"+this.contact.collaborator.id;
         }
       }
     )

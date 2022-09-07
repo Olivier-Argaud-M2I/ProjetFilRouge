@@ -46,6 +46,9 @@
             </div>
 
           <div *ngIf="valid">ca marche</div>
+
+          <button  *ngIf="valid" [routerLink]="link" routerLinkActive = "selectedMenu"  value="Calendrier" class="">lien planning</button>
+
         </div>
     </div>
 </div>

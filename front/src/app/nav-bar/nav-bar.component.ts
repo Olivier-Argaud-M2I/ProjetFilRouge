@@ -8,13 +8,15 @@ import { LoginService } from '../service/login.service';
 })
 export class NavBarComponent implements OnInit {
 
+  link = "/planning/1"
   loginService:LoginService;
 
-  constructor(private _loginService:LoginService) { 
+  constructor(private _loginService:LoginService) {
     this.loginService = _loginService;
   }
 
   ngOnInit(): void {
+    this.link ="/planning/"+this.loginService.userLogged?.id;
   }
 
   logout(){

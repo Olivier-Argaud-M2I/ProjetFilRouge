@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Events} from "../../../model/Events";
 import {EventsService} from "../../../service/events.service";
 import {FormBuilder} from "@angular/forms";
@@ -15,6 +15,7 @@ const daysOfTheWeek:String = "Dimanche Lundi Mardi Mercredi Jeudi Vendredi Samed
   styleUrls: ['./resume-semaine.component.css']
 })
 export class ResumeSemaineComponent implements OnInit {
+  @Input()id:number = 1;
 
   eventsList: Events[] = [];
   daysList: String[] = [];
@@ -89,7 +90,7 @@ export class ResumeSemaineComponent implements OnInit {
   }
 
   refreshEvents(){
-    this.eventsService.getEventsByWeekAndUserId(this.tms,this.loginService.userLogged?.id!).subscribe(
+    this.eventsService.getEventsByWeekAndUserId(this.tms,this.id).subscribe(
       (response)=>{
         this.eventsList = response;
       }

@@ -2,13 +2,13 @@
     <div class="flex mt-[4.7rem] md:mt-0">
 
         <nav class="top-nav">
-            
+
             <a href="/" class="router-link-active intro-x flex items-center pl-5 pt-4" tag="a">
                 <img alt="SmartPlanner Logo" class="w-36" src="../../assets/pictures/logoSmartPlanner.png">
             </a>
 
 
-        
+
 
 
         <!-- <div *ngIf="loginService.isLogged"> Bienvenue {{loginService!.userLogged!.userName}}</div> -->
@@ -30,7 +30,7 @@
 
 
             <li>
-                <button routerLink="/planning" routerLinkActive = "selectedMenu"  value="Calendrier" class="top-menu">
+                <button [routerLink]="link" routerLinkActive = "selectedMenu"  value="Calendrier" class="top-menu">
                     <div class="side-menu__icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide">
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -92,7 +92,7 @@
                     <div class="side-menu__title ml-1">Administration</div>
                 </button>
                 <!---->
-            </li>  
+            </li>
 
 
 
@@ -108,7 +108,7 @@
                     <div class="side-menu__title ml-1">Se déconnecter</div>
                 </button>
                 <!---->
-            </li>    
+            </li>
 
 
 
