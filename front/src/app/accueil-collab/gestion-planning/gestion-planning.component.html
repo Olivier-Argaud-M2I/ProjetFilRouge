@@ -1,23 +1,31 @@
 <app-nav-bar></app-nav-bar>
-<div> Planning de {{user.firstName}} {{user.lastName}}</div>
-<div>
-  <div>
-    <button (click)="toDaily()">Day</button>
+
+<div class="content">
+
+  <div class="intro-y flex items-center mt-8">
+      <h2 class="text-lg font-medium mr-auto">Planning de {{user.firstName}} {{user.lastName}}</h2>
   </div>
-  <div>
-    <button (click)="toWeekly()">Week</button>
+
+  <div class="intro-y box px-5 pt-5 mt-5">
+    <div>
+      <div>
+        <button (click)="toDaily()">Day</button>
+      </div>
+      <div>
+        <button (click)="toWeekly()">Week</button>
+      </div>
+      <div>
+        <button (click)="toMonthly()">Month</button>
+      </div>
+    </div>
+    <div *ngIf="calendarView=='daily'">
+      <app-resume-journee [id]="idForPlanning"></app-resume-journee>
+    </div>
+    <div *ngIf="calendarView=='weekly'">
+      <app-resume-semaine [id]="idForPlanning"></app-resume-semaine>
+    </div>
+    <div *ngIf="calendarView=='monthly'">
+      <app-resume-mois [id]="idForPlanning"></app-resume-mois>
+    </div>
+    <app-event-form *ngIf="write" [id]="idForPlanning" (notifyParent)="getNotification($event)" ></app-event-form>
   </div>
-  <div>
-    <button (click)="toMonthly()">Month</button>
-  </div>
-</div>
-<div *ngIf="calendarView=='daily'">
-  <app-resume-journee [id]="idForPlanning"></app-resume-journee>
-</div>
-<div *ngIf="calendarView=='weekly'">
-  <app-resume-semaine [id]="idForPlanning"></app-resume-semaine>
-</div>
-<div *ngIf="calendarView=='monthly'">
-  <app-resume-mois [id]="idForPlanning"></app-resume-mois>
-</div>
-<app-event-form *ngIf="write" [id]="idForPlanning" (notifyParent)="getNotification($event)" ></app-event-form>

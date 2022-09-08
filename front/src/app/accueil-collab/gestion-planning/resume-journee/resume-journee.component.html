@@ -23,7 +23,7 @@
     <button *ngIf="delete" (click)="del(event.id)">Supprimer</button>
   </div>
   <div *ngIf="modification===event.id">
-    <form (ngSubmit)="modify(event.id)" [formGroup]="eventModifyForm">
+    <form (ngSubmit)="modify(event)" [formGroup]="eventModifyForm">
       <label>Modifier l'évènement</label>
       <div>
         <input type="hidden" formControlName="id" [value]="event.id">
