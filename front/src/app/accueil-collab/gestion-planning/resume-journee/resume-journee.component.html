@@ -1,13 +1,13 @@
-<div id="divListe">
+<div>
   <div>
-    <h1 id="titreResumeDay">RESUME QUOTIDIEN DES EVENEMENTS</h1><br>
+    <h1>Résumé quotidien des évènements</h1><br>
   </div>
   <div>
     <p>{{dateToShow}}</p>
   </div>
   <div>
-    <button class="button" (click)="previousDay()">Précédent</button>
-    <button class="button" (click)="nextDay()">Suivant</button>
+    <button (click)="previousDay()">Précédent</button>
+    <button (click)="nextDay()">Suivant</button>
   </div>
   <div *ngIf="eventsList.length === 0 || eventsList === null">
     <p>Aucun évènement à afficher...</p>
@@ -65,6 +65,6 @@
 </li><br>
 
   <div *ngIf="jour!==0">
-    <p class="button" (click)="reset()">Revenir à aujourd'hui</p>
+    <p (click)="reset()" class="btn btn-outline-secondary py-1 px-2">Revenir à aujourd'hui</p>
   </div>
 </div>

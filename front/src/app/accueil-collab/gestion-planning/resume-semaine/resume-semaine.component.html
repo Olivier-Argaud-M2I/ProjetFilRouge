@@ -1,13 +1,13 @@
-<div id="divListe">
+<div>
   <div>
-    <h1 id="titreResumeWeek">RESUME HEBDOMADAIRE DES EVENEMENTS</h1><br>
+    <h1>RESUME HEBDOMADAIRE DES EVENEMENTS</h1><br>
     <div>
       <div>
         <p>Semaine du {{actualMonday.getDate()}}/{{actualMonday.getMonth()+1}} au
         {{sunday.getDate()}}/{{sunday.getMonth()+1}}</p>
     </div>
-    <button class="button" (click)="previousWeek()">Précédent</button>
-    <button class="button" (click)="nextWeek()">Suivant</button>
+    <button (click)="previousWeek()">Précédent</button>
+    <button (click)="nextWeek()">Suivant</button>
   </div>
   <div *ngIf="eventsList.length === 0 || eventsList === null">
     <p>Aucun évènement à afficher...</p>
@@ -32,7 +32,7 @@
   </table> -->
 
   <ul>
-    <li id="divElement" *ngFor="let event of this.eventsList" [value]="event">
+    <li *ngFor="let event of this.eventsList" [value]="event">
       <fieldset>
         <div>
           <h3>{{event.date_debut_timestamp*1000 | date: 'dd/MM/yyyy HH:mm'}}</h3>
@@ -43,6 +43,6 @@
     </li><br>
   </ul>
   <div *ngIf="semaine!==0">
-    <button class="button" (click)="reset()">Revenir à la semaine en cours</button>
+    <button (click)="reset()">Revenir à la semaine en cours</button>
   </div>
   </div></div>

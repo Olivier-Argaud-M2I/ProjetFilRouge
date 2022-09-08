@@ -1,44 +1,44 @@
 <fieldset>
   <form (ngSubmit)="create()" [formGroup]="eventForm" id="eventsFormAng">
-    <label id="titreNewEvent" for="eventsFormAng">Nouvel évènement</label>
+    <label for="eventsFormAng">Nouvel évènement</label>
     <div>
-      <label class="titres">Nom de l'évènement</label>
+      <label>Nom de l'évènement</label>
     </div>
     <div>
-      <input class="inputs" type="text" formControlName="name">
+      <input type="text" formControlName="name">
     </div>
     <div>
-      <div style="color: red;" *ngIf="eventForm.get('name')?.dirty  &&  eventForm.get('name')?.hasError('required')"   >champ obligatoire</div>
+      <div *ngIf="eventForm.get('name')?.dirty  &&  eventForm.get('name')?.hasError('required')"   >champ obligatoire</div>
     </div>
     <div>
-      <label class="titres">Description</label>
+      <label>Description</label>
     </div>
     <div>
-      <input class="inputs" type="text" formControlName="description" placeholder="facultatif">
+      <input type="text" formControlName="description" placeholder="facultatif">
     </div>
     <div>
-      <label class="titres" for="inputDatetimeDebut">Début</label>
+      <label for="inputDatetimeDebut">Début</label>
     </div>
     <div>
-      <input class="inputs" type="datetime-local" id="inputDatetimeDebut" name="inputDatetimeDebut" formControlName="date_debut_timestamp"
+      <input type="datetime-local" id="inputDatetimeDebut" name="inputDatetimeDebut" formControlName="date_debut_timestamp"
            placeholder="yyyy-MM-ddTHH:mm" required />
     </div>
     <div>
-      <div style="color: red;" *ngIf="eventForm.get('date_debut_timestamp')?.dirty  &&  eventForm.get('date_debut_timestamp')?.hasError('required')"   >champ obligatoire</div>
+      <div *ngIf="eventForm.get('date_debut_timestamp')?.dirty  &&  eventForm.get('date_debut_timestamp')?.hasError('required')"   >champ obligatoire</div>
     </div>
     <div>
-      <label class="titres" for="inputDatetimeFin">Fin</label>
+      <label for="inputDatetimeFin">Fin</label>
     </div>
     <div>
-      <input class="inputs" type="datetime-local" id="inputDatetimeFin" name="inputDatetimeFin" formControlName="date_fin_timestamp"
+      <input type="datetime-local" id="inputDatetimeFin" name="inputDatetimeFin" formControlName="date_fin_timestamp"
            placeholder="yyyy-MM-ddTHH:mm"  required />
     </div>
     <div>
-      <div style="color: red;" *ngIf="eventForm.get('date_fin_timestamp')?.dirty  &&  eventForm.get('date_fin_timestamp')?.hasError('required')"   >champ obligatoire</div>
+      <div *ngIf="eventForm.get('date_fin_timestamp')?.dirty  &&  eventForm.get('date_fin_timestamp')?.hasError('required')"   >champ obligatoire</div>
     </div>
     <input type="hidden" formControlName="user_id">
     <div>
-      <input class="inputs" type="submit" value="Valider" [disabled]="eventForm.invalid">
+      <input type="submit" value="Valider" [disabled]="eventForm.invalid">
     </div>
   </form>
 </fieldset>
