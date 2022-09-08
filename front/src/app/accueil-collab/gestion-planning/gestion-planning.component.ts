@@ -1,6 +1,9 @@
 import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {LoginService} from "../../service/login.service";
+import {User} from "../../model/User";
+import {UserService} from "../../service/user.service";
+import {ContactService} from "../../service/contact.service";
 
 @Component({
   selector: 'app-gestion-planning',
@@ -12,12 +15,18 @@ export class GestionPlanningComponent implements OnInit {
 
   id:number=this.logingSErvice.userLogged!.id;
 
+  user!:User;
+
+  write:boolean= true;
+
   calendarView:string;
 
   constructor(
     private changeDetector: ChangeDetectorRef,
     private route: ActivatedRoute,
-    private logingSErvice:LoginService
+    private logingSErvice:LoginService,
+    private userService:UserService,
+    private contactService:ContactService
     ) {
     this.calendarView = "false";
   }
@@ -44,6 +53,8 @@ export class GestionPlanningComponent implements OnInit {
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.calendarView="daily";
+    this.userService.getUser(this.id).subscribe((user)=>this.user=user)
+
   }
 
   refresh(){

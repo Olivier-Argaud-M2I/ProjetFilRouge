@@ -1,4 +1,5 @@
 <app-nav-bar></app-nav-bar>
+<div> Planning de {{user.firstName}} {{user.lastName}}</div>
 <div>
   <div>
     <button (click)="toDaily()">Day</button>
@@ -19,4 +20,4 @@
 <div *ngIf="calendarView=='monthly'">
   <app-resume-mois [id]="id"></app-resume-mois>
 </div>
-<app-event-form (notifyParent)="getNotification($event)" ></app-event-form>
+<app-event-form *ngIf="write" [id]="id" (notifyParent)="getNotification($event)" ></app-event-form>
