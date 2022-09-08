@@ -15,9 +15,9 @@
   <app-resume-journee [id]="idForPlanning"></app-resume-journee>
 </div>
 <div *ngIf="calendarView=='weekly'">
-  <app-resume-semaine [id]="idForPlanning"></app-resume-semaine>
+  <app-resume-semaine [idForPlanning]="idForPlanning"></app-resume-semaine>
 </div>
 <div *ngIf="calendarView=='monthly'">
-  <app-resume-mois [id]="idForPlanning"></app-resume-mois>
+  <app-resume-mois [idForPlanning]="idForPlanning"></app-resume-mois>
 </div>
 <app-event-form *ngIf="write" [id]="idForPlanning" (notifyParent)="getNotification($event)" ></app-event-form>
