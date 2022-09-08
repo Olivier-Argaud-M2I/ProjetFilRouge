@@ -52,7 +52,7 @@
                 
                 <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
                     <div class="my-auto mx-auto xl:ml-20 bg-[#28334E] xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
-                        <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center text-slate-500 underline decoration-[#EC4B4B]/60">
+                        <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center text-slate-500">
                             Bienvenue sur le Smart Planner
                         </h2>
                         <div class="intro-x mt-2 text-slate-400 text-center">L'application nécessaire pour la gestion de son travail</div>
@@ -62,9 +62,10 @@
                 
                             <div class="text-xl font-bold text-center mt-5">
                                 <input *ngIf="!loginService.isLogged" type="button" routerLink="/login" routerLinkActive = "selectedMenu"  value="Connexion" class="btn btn-primary mt-3 py-3 px-4 w-full xl:w-32 xl:mr-3 xl:mt-0 align-top">
-                                <input *ngIf="loginService.isLogged" type="button" (click)="logout()" value="Deconnexion" class="btn btn-primary mt-3 py-3 px-4 w-full xl:w-32 xl:mr-3 xl:mt-0 align-top">
+                                <input *ngIf="loginService.isLogged" type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Accueil" class="btn btn-primary  mt-3 py-3 px-4 w-full xl:w-32 xl:mr-3 xl:mt-0 align-top">
                                 <input *ngIf="loginService.roleMatch(['cruduser'])" type="button" routerLink="/gestionComptes" routerLinkActive = "selectedMenu"  value="Admin" class="btn btn-primary mt-3 py-3 px-4 w-full xl:w-32 xl:mr-3 xl:mt-0 align-top">
-                                <input *ngIf="loginService.isLogged" type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Acceuil" class="btn btn-primary  mt-3 py-3 px-4 w-full xl:w-32 xl:mr-3 xl:mt-0 align-top">
+                                <input *ngIf="loginService.isLogged" type="button" (click)="logout()" value="Deconnexion" class="btn btn-primary mt-3 py-3 px-4 w-full xl:w-32 xl:mr-3 xl:mt-0 align-top">
+                                
                             </div>
 
                             <div class="mt-8">
