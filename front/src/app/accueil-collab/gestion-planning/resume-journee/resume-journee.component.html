@@ -6,8 +6,8 @@
     <p>{{dateToShow}}</p>
   </div>
   <div>
-    <button (click)="previousDay()">Précédent</button>
-    <button (click)="nextDay()">Suivant</button>
+    <button class="button" (click)="previousDay()">Précédent</button>
+    <button class="button" (click)="nextDay()">Suivant</button>
   </div>
   <div *ngIf="eventsList.length === 0 || eventsList === null">
     <p>Aucun évènement à afficher...</p>

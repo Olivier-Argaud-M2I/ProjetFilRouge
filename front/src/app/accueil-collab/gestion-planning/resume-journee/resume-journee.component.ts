@@ -17,9 +17,9 @@ import {ContactService} from "../../../service/contact.service";
   templateUrl: './resume-journee.component.html',
   styleUrls: ['./resume-journee.component.css']
 })
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+ // providedIn: 'root'
+// })
 export class ResumeJourneeComponent implements OnInit {
   @Input()id!:number;
 
@@ -29,6 +29,7 @@ export class ResumeJourneeComponent implements OnInit {
   calendarOwner!:User;
 
   eventsList: Events[] = [];
+  eventsListToCompare:Events[]=[];
   eventsService:EventsService;
   loginService:LoginService;
   dm:DateManipulation;
@@ -160,23 +161,31 @@ export class ResumeJourneeComponent implements OnInit {
     user_id:this.userIdCtrl
   });
 
-  modify(idEvent:number){
+  modify(event:Events){
 
-    console.log(this.eventModifyForm.value.date_debut_timestamp);
-    console.log(this.eventModifyForm.value.date_fin_timestamp);
     let debut = new Date(this.eventModifyForm.value.date_debut_timestamp!).getTime()/1000;
     let fin = new Date(this.eventModifyForm.value.date_fin_timestamp!).getTime()/1000;
     this.eventModifyForm.value.date_debut_timestamp = debut.toString();
     this.eventModifyForm.value.date_fin_timestamp = fin.toString();
+    this.eventModifyForm.value.user_id = event.user_id.toString();
+
+    // On utilise la fonction verify pour garantir que deux évènements n'aient
+    // pas lieu en même temps
+    // Si la listeToCompare renvoit des élèments ce n'est pas bon signe
+    this.eventsService.verify(event.user_id,debut,fin).subscribe(
+      (response)=>{
+        this.eventsListToCompare = response;
+      }
+    )
+    if(this.eventsListToCompare!=null && this.eventsListToCompare!=[]){
+      console.log("listToCompare not null and not empty");
+      return;
+    }
     this.eventsService.updateEvent(this.eventModifyForm.value).subscribe(
       ()=>{
         this.notifyParent.emit('refresh');
       }
     );
-    this.reset();
-  }
-  activateFormModif(idEvent:number){
-    this.modification=idEvent;
     this.reset();
   }
 
@@ -200,4 +209,5 @@ export class ResumeJourneeComponent implements OnInit {
   goTo(){
 
   }
+
 }
