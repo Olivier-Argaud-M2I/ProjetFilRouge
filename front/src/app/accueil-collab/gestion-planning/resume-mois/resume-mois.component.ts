@@ -12,7 +12,7 @@ import * as moment from "moment/moment";
   styleUrls: ['./resume-mois.component.css']
 })
 export class ResumeMoisComponent implements OnInit {
-  @Input()id:number = 1;
+  @Input()id!:number;
 
   eventsList: Events[] = [];
   eventsService:EventsService;
@@ -57,7 +57,11 @@ export class ResumeMoisComponent implements OnInit {
 
 
   ngOnInit():void {
-
+    this.eventsService.getEventsByMonthAndUserId(this.tms,this.id).subscribe(
+      (response)=>{
+        this.eventsList = response;
+      }
+    )
   }
 
   del(id:number){
@@ -69,11 +73,6 @@ export class ResumeMoisComponent implements OnInit {
   }
 
   refreshEvents(){
-    this.eventsService.getEventsByMonthAndUserId(this.tms,this.id).subscribe(
-      (response)=>{
-        this.eventsList = response;
-      }
-    )
     this.ngOnInit();
   }
 

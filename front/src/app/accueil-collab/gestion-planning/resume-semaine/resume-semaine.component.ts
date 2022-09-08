@@ -15,7 +15,7 @@ const daysOfTheWeek:String = "Dimanche Lundi Mardi Mercredi Jeudi Vendredi Samed
   styleUrls: ['./resume-semaine.component.css']
 })
 export class ResumeSemaineComponent implements OnInit {
-  @Input()id:number = 1;
+  @Input()id!:number;
 
   eventsList: Events[] = [];
   daysList: String[] = [];
@@ -78,7 +78,11 @@ export class ResumeSemaineComponent implements OnInit {
   }
 
   ngOnInit():void {
-
+    this.eventsService.getEventsByWeekAndUserId(this.tms,this.id).subscribe(
+      (response)=>{
+        this.eventsList = response;
+      }
+    )
   }
 
   del(id:number){
@@ -90,11 +94,6 @@ export class ResumeSemaineComponent implements OnInit {
   }
 
   refreshEvents(){
-    this.eventsService.getEventsByWeekAndUserId(this.tms,this.id).subscribe(
-      (response)=>{
-        this.eventsList = response;
-      }
-    )
     this.ngOnInit();
   }
 

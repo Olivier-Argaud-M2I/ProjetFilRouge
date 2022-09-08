@@ -18,7 +18,7 @@ import {DateManipulation} from "../../../util/DateManipulation";
   providedIn: 'root'
 })
 export class ResumeJourneeComponent implements OnInit {
-  @Input()id:number = 1;
+  @Input()id!:number;
 
   eventsList: Events[] = [];
   eventsService:EventsService;
@@ -59,7 +59,11 @@ export class ResumeJourneeComponent implements OnInit {
 
 
   ngOnInit():void {
-
+    this.eventsService.getEventsByDayAndUserId(this.tms,this.id).subscribe(
+      (response)=>{
+        this.eventsList = response;
+      }
+    )
   }
 
   del(id:number){
@@ -71,11 +75,6 @@ export class ResumeJourneeComponent implements OnInit {
   }
 
   refreshEvents(){
-    this.eventsService.getEventsByDayAndUserId(this.tms,this.id).subscribe(
-      (response)=>{
-        this.eventsList = response;
-      }
-    )
     this.ngOnInit();
   }
 
