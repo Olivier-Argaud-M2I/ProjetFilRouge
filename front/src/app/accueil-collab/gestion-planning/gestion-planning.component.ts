@@ -21,6 +21,8 @@ export class GestionPlanningComponent implements OnInit {
 
   calendarView:string;
 
+  viewForm:boolean;
+
   constructor(
     private changeDetector: ChangeDetectorRef,
     private route: ActivatedRoute,
@@ -29,6 +31,7 @@ export class GestionPlanningComponent implements OnInit {
     private contactService:ContactService
     ) {
     this.calendarView = "false";
+    this.viewForm = false;
   }
 
   getNotification(evt:any) {
@@ -69,6 +72,16 @@ export class GestionPlanningComponent implements OnInit {
     }
 
 
+  }
+
+  activateForm(){
+    this.viewForm = true;
+    this.ngOnInit;
+  }
+
+  deactivateForm(){
+    this.viewForm = false;
+    this.ngOnInit;
   }
 
   refresh(){
