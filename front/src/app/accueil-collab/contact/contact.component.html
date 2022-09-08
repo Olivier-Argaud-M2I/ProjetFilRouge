@@ -9,7 +9,7 @@
     <div id="input" class="p-5">
         <div class="preview" style="display: block;">
             <legend class="font-medium text-lg">Liste des contacts existants</legend>
-                
+
             <div class="grid grid-cols-12 gap-6 mt-5">
                 <div class="intro-y col-span-12 md:col-span-6 lg:col-span-4">
                     <div class="box" *ngFor="let contact of contacts">
@@ -21,13 +21,13 @@
                                     <p class="capitalize font-medium"> {{contact.collaborator.firstName}} {{contact.collaborator.lastName}}</p>
                                     <p class="text-slate-500 text-xs mt-0.5">{{contact.collaborator.role.name}}</p>
                                 </div>
-                            
+
                             <!-- <div class="text-center lg:text-left p-5">
                                 <div class="flex items-center justify-center lg:justify-start text-slate-500 mt-5">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide w-3 h-3 mr-2">
                                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                                         <polyline points="22,6 12,13 2,6"></polyline>
-                                    </svg> 
+                                    </svg>
                                     {{contact.collaborator.email}}
                                 </div>
                                 <div class="flex items-center justify-center lg:justify-start text-slate-500 mt-1">
@@ -57,7 +57,7 @@
                     <p (click)="editer(contact.id)">{{contact.collaborator.lastName}} {{contact.collaborator.firstName}}</p>
                     <button (click)="removeContact(contact.collaborator)">Supprimer</button>
                 </div> -->
-        
+
 
 
             <form (ngSubmit)="addContact()" [formGroup]="contactForm" class="mt-5">
@@ -72,11 +72,11 @@
                         </option>
                     </select>
                 </div>
-        
+
                 <div class="mt-3">
                     <input type="submit" value="Valider" [disabled]="contactForm.invalid" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">
                 </div>
-        
+
             </form>
         </div>
 

@@ -12,12 +12,12 @@
   </div>
 </div>
 <div *ngIf="calendarView=='daily'">
-  <app-resume-journee [id]="id"></app-resume-journee>
+  <app-resume-journee [id]="idForPlanning"></app-resume-journee>
 </div>
 <div *ngIf="calendarView=='weekly'">
-  <app-resume-semaine [id]="id"></app-resume-semaine>
+  <app-resume-semaine [id]="idForPlanning"></app-resume-semaine>
 </div>
 <div *ngIf="calendarView=='monthly'">
-  <app-resume-mois [id]="id"></app-resume-mois>
+  <app-resume-mois [id]="idForPlanning"></app-resume-mois>
 </div>
-<app-event-form *ngIf="write" [id]="id" (notifyParent)="getNotification($event)" ></app-event-form>
+<app-event-form *ngIf="write" [id]="idForPlanning" (notifyParent)="getNotification($event)" ></app-event-form>

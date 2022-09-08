@@ -13,18 +13,18 @@ import {ContactService} from "../../service/contact.service";
 export class GestionPlanningComponent implements OnInit {
 
 
-  id:number=this.logingSErvice.userLogged!.id;
+  idForPlanning!:number;
 
   user!:User;
 
-  write:boolean= true;
+  write:boolean= false;
 
   calendarView:string;
 
   constructor(
     private changeDetector: ChangeDetectorRef,
     private route: ActivatedRoute,
-    private logingSErvice:LoginService,
+    private logingService:LoginService,
     private userService:UserService,
     private contactService:ContactService
     ) {
@@ -51,9 +51,23 @@ export class GestionPlanningComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.idForPlanning = Number(this.route.snapshot.paramMap.get('id'));
     this.calendarView="daily";
-    this.userService.getUser(this.id).subscribe((user)=>this.user=user)
+    if(this.idForPlanning==this.logingService.userLogged?.id){
+      this.write = true;
+      this.user = this.logingService.userLogged;
+    }
+    else{
+      this.userService.getUser(this.idForPlanning).subscribe((user)=>{
+        this.user=user;
+        this.contactService.getContact(this.idForPlanning,this.logingService.userLogged!.id).subscribe(
+          (contact)=>{
+            this.write=contact.calendarPrivileges.filter((priv)=> priv.name==="addEvent").length>0;
+          }
+        )
+      })
+    }
+
 
   }
 

@@ -8,6 +8,9 @@ import {EventsService} from "../../../service/events.service";
 import * as moment from 'moment';
 import {Moment} from "moment";
 import {DateManipulation} from "../../../util/DateManipulation";
+import {User} from "../../../model/User";
+import {UserService} from "../../../service/user.service";
+import {ContactService} from "../../../service/contact.service";
 
 @Component({
   selector: 'app-resume-journee',
@@ -19,6 +22,11 @@ import {DateManipulation} from "../../../util/DateManipulation";
 })
 export class ResumeJourneeComponent implements OnInit {
   @Input()id!:number;
+
+  update:boolean= false;
+  delete:boolean= false;
+
+  calendarOwner!:User;
 
   eventsList: Events[] = [];
   eventsService:EventsService;
@@ -44,7 +52,9 @@ export class ResumeJourneeComponent implements OnInit {
     private _eventsService:EventsService,
     private router:Router,
     private _loginService:LoginService,
-    private _dm:DateManipulation
+    private _dm:DateManipulation,
+    private userService:UserService,
+    private contactService:ContactService
   ) {
     this.eventsService=_eventsService;
     this.loginService=_loginService;
@@ -64,6 +74,27 @@ export class ResumeJourneeComponent implements OnInit {
         this.eventsList = response;
       }
     )
+
+    if(this.id==this.loginService.userLogged?.id){
+      this.update = true;
+      this.delete = true;
+      this.calendarOwner = this.loginService.userLogged;
+    }
+    else{
+      this.userService.getUser(this.id).subscribe((user)=>{
+        this.calendarOwner=user;
+        this.contactService.getContact(this.id,this.loginService.userLogged!.id).subscribe(
+          (contact)=>{
+            this.update=contact.calendarPrivileges.filter((priv)=> priv.name==="modifyEvent").length>0;
+            this.delete=contact.calendarPrivileges.filter((priv)=> priv.name==="deleteEvent").length>0;
+          }
+        )
+      })
+    }
+
+
+
+
   }
 
   del(id:number){

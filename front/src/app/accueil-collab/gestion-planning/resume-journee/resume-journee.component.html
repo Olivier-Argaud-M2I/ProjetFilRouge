@@ -12,61 +12,58 @@
   <div *ngIf="eventsList.length === 0 || eventsList === null">
     <p>Aucun évènement à afficher...</p>
   </div>
-  <ul>
-    <li id="divElement" *ngFor="let event of this.eventsList" [value]="event">
-      <fieldset>
-        <div>
-          <h3>{{event.date_debut_timestamp*1000 | date: 'HH:mm'}}</h3>
-          <p>{{event.name}}</p>
-          <p>{{event.description}}</p>
-        </div>
-        <div id="subDivElement">
-          <button class="button" (click)="initForm(event)">Modifier</button>
-          <button class="button" (click)="del(event.id)">Supprimer</button>
-        </div>
-        <div *ngIf="modification===event.id">
-                <form (ngSubmit)="modify(event.id)" [formGroup]="eventModifyForm">
-                  <label>Modifier l'évènement</label>
-                  <div>
-                    <input type="hidden" formControlName="id" [value]="event.id">
-                  </div>
-                  <div>
-                    <label class="titres">Nom de l'évènement</label>
-                  </div>
-                  <div>
-                    <input class="inputs" type="text" formControlName="name">
-                  </div>
-                  <div>
-                    <label class="titres">Description</label>
-                  </div>
-                  <div>
-                    <input class="inputs" type="text" formControlName="description" placeholder="facultatif">
-                  </div>
-                  <div>
-                    <label class="titres" for="inputDatetimeDebut">Début</label>
-                  </div>
-                  <div>
-                    <input class="inputs" type="datetime-local" id="inputDatetimeDebut" name="inputDatetimeDebut" formControlName="date_debut_timestamp"
-                           placeholder="yyyy-MM-ddTHH:mm" required/>
-                  </div>
-                  <div>
-                    <label class="titres" for="inputDatetimeFin">Fin</label>
-                  </div>
-                  <div>
-                    <input class="inputs" type="datetime-local" id="inputDatetimeFin" name="inputDatetimeFin" formControlName="date_fin_timestamp"
-                           placeholder="yyyy-MM-ddTHH:mm"  required />
-                  </div>
-                  <div>
-                    <input class="inputs" type="button" value="Annuler" (click)="deactivateFormModif()">
-                  </div>
-                  <div>
-                    <input class="inputs" type="submit" value="Valider">
-                  </div>
-                </form>
-        </div>
-      </fieldset>
-    </li><br>
-  </ul>
+<li *ngFor="let event of this.eventsList" [value]="event">
+  <div>
+    <h3>{{event.date_debut_timestamp*1000 | date: 'HH:mm'}}</h3>
+    <p>{{event.name}}</p>
+    <p>{{event.description}}</p>
+  </div>
+  <div>
+    <button *ngIf="update" (click)="initForm(event)">Modifier</button>
+    <button *ngIf="delete" (click)="del(event.id)">Supprimer</button>
+  </div>
+  <div *ngIf="modification===event.id">
+    <form (ngSubmit)="modify(event.id)" [formGroup]="eventModifyForm">
+      <label>Modifier l'évènement</label>
+      <div>
+        <input type="hidden" formControlName="id" [value]="event.id">
+      </div>
+      <div>
+        <label>Nom de l'évènement</label>
+      </div>
+      <div>
+        <input type="text" formControlName="name">
+      </div>
+      <div>
+        <label>Description</label>
+      </div>
+      <div>
+        <input type="text" formControlName="description" placeholder="facultatif">
+      </div>
+      <div>
+        <label for="inputDatetimeDebut">Début</label>
+      </div>
+      <div>
+        <input type="datetime-local" id="inputDatetimeDebut" name="inputDatetimeDebut" formControlName="date_debut_timestamp"
+               placeholder="yyyy-MM-ddTHH:mm" required/>
+      </div>
+      <div>
+        <label for="inputDatetimeFin">Fin</label>
+      </div>
+      <div>
+        <input type="datetime-local" id="inputDatetimeFin" name="inputDatetimeFin" formControlName="date_fin_timestamp"
+               placeholder="yyyy-MM-ddTHH:mm"  required />
+      </div>
+      <div>
+        <input type="button" value="Annuler" (click)="deactivateFormModif()">
+      </div>
+      <div>
+        <input type="submit" value="Valider">
+      </div>
+    </form>
+  </div>
+</li><br>
+
   <div *ngIf="jour!==0">
     <p class="button" (click)="reset()">Revenir à aujourd'hui</p>
   </div>
