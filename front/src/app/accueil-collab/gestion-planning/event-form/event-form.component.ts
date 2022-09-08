@@ -45,6 +45,17 @@ export class EventFormComponent implements OnInit {
     this.eventForm.value.date_debut_timestamp = debut.toString();
     this.eventForm.value.date_fin_timestamp = fin.toString();
     this.eventForm.value.user_id = this.id;
+    this.eventForm.value.user_id = this.loginService.userLogged?.id!;
+
+    // On utilise la fonction verify pour garantir que deux évènements n'aient
+    // pas lieu en même temps
+    // Si la listeToCompare renvoit des élèments ce n'est pas bon signe
+    //this.eventsService.verify(this.userIdCtrl,debut,fin).subscribe(
+    //  (response)=>{
+    //    this.eventsListToCompare = response;
+    //  }
+    //)
+
     this.eventsService.createEvent(this.eventForm.value).subscribe(
       ()=>{
         this.notifyParent.emit('refresh');

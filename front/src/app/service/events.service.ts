@@ -8,9 +8,9 @@ import {
   UrlTree
 } from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
 import {Constante} from "../constante";
 import {Events} from "../model/Events";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,7 @@ import {Events} from "../model/Events";
 export class EventsService{
 
   apiUrl: string = Constante.API_URL;
+  listEvents:any[] = [];
 
   constructor(private router:Router,private http: HttpClient) {
   }
@@ -67,4 +68,10 @@ export class EventsService{
     return this.http.get<Events[]>(this.apiUrl+"/events/allByMonthAndUserId/"+id+"/"+timestamp);
   }
 
+  // Renvoit une liste avec les évènements susceptibles de chevaucher des autres  évènements.
+  verify(idUser:number,tms1:number,tms2:number){
+
+    console.log(this.apiUrl+"/events/allByTimeRangeAndUserId/"+idUser+"/" +tms1+"/"+tms2);
+    return this.http.get<Events[]>(this.apiUrl+"/events/allByTimeRangeAndUserId/"+idUser+"/" +tms1+"/"+tms2);
+  }
 }

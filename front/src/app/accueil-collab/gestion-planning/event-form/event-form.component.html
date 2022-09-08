@@ -24,7 +24,11 @@
            placeholder="yyyy-MM-ddTHH:mm" required />
     </div>
     <div>
-      <div style="color: red;" *ngIf="eventForm.get('date_debut_timestamp')?.dirty  &&  eventForm.get('date_debut_timestamp')?.hasError('required')"   >champ obligatoire</div>
+      <div style="color: red;" *ngIf="eventForm.get('date_debut_timestamp')?.dirty  &&  eventForm.get('date_debut_timestamp')?.hasError('required')">champ obligatoire</div>
+    </div>
+    <div>
+      <div style="color: red;" *ngIf="eventForm.get('date_debut_timestamp')!.value!.valueOf()! >= eventForm.get('date_fin_timestamp')!.value!.valueOf()!">
+        La date/heure de début doit être inférieure à la date/heure de fin</div>
     </div>
     <div>
       <label class="titres" for="inputDatetimeFin">Fin</label>
@@ -34,7 +38,11 @@
            placeholder="yyyy-MM-ddTHH:mm"  required />
     </div>
     <div>
-      <div style="color: red;" *ngIf="eventForm.get('date_fin_timestamp')?.dirty  &&  eventForm.get('date_fin_timestamp')?.hasError('required')"   >champ obligatoire</div>
+      <div style="color: red;" *ngIf="eventForm.get('date_fin_timestamp')?.dirty  &&  eventForm.get('date_fin_timestamp')?.hasError('required')">champ obligatoire</div>
+    </div>
+    <div>
+      <div style="color: red;" *ngIf="eventForm.get('date_debut_timestamp')!.value!.valueOf()! >= eventForm.get('date_fin_timestamp')!.value!.valueOf()!">
+        La date/heure de fin doit être supérieure à la date/heure de début</div>
     </div>
     <input type="hidden" formControlName="user_id">
     <div>
