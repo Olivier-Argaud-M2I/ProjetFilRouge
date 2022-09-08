@@ -5,6 +5,10 @@ import {FormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {LoginService} from "../../../service/login.service";
 import * as moment from "moment/moment";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {User} from "../../../model/User";
 
 @Component({
   selector: 'app-resume-mois',
@@ -12,7 +16,7 @@ import * as moment from "moment/moment";
   styleUrls: ['./resume-mois.component.css']
 })
 export class ResumeMoisComponent implements OnInit {
-  @Input()id!:number;
+  @Input()idForPlanning!:number;
 
   eventsList: Events[] = [];
   eventsService:EventsService;
@@ -38,7 +42,8 @@ export class ResumeMoisComponent implements OnInit {
     private fb:FormBuilder,
     private _eventsService:EventsService,
     private router:Router,
-    private _loginService:LoginService
+    private _loginService:LoginService,
+    private http:HttpClient
   ) {
     this.eventsService=_eventsService;
     this.loginService = _loginService;
@@ -57,7 +62,7 @@ export class ResumeMoisComponent implements OnInit {
 
 
   ngOnInit():void {
-    this.eventsService.getEventsByMonthAndUserId(this.tms,this.id).subscribe(
+    this.eventsService.getEventsByMonthAndUserId(this.tms,this.idForPlanning).subscribe(
       (response)=>{
         this.eventsList = response;
       }
@@ -103,5 +108,33 @@ export class ResumeMoisComponent implements OnInit {
     this.actualMonth = moment(this.date).format('MMMM');
     this.refreshEvents();
   }
+
+
+
+  public openPDF(): void {
+    let DATA: any = document.getElementById('htmlData');
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 208;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      PDF.save('angular-demo.pdf');
+    });
+  }
+
+  sendMail(){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http.post('https://formspree.io/f/meqderdk',
+      { name: this.loginService.userLogged?.firstName, replyto: this.loginService.userLogged?.email, message: this.eventsList },
+      { 'headers': headers }).subscribe(
+      response => {
+        console.log(response);
+      }
+    );
+  }
+
+
 
 }

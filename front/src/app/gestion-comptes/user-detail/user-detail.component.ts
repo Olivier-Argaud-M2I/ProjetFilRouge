@@ -25,17 +25,21 @@ export class UserDetailComponent implements OnInit {
   lastnameCtrl = this.fb.control('',[Validators.required]);
   usernameCtrl = this.fb.control('',[Validators.required]);
   roleCtrl = this.fb.control('',[Validators.required]);
+  emailCtrl = this.fb.control('',[Validators.required]);
+  telephonetrl = this.fb.control('',[Validators.required]);
 
 
   userForm = this.fb.group({
     firstName:this.firstnameCtrl,
     lastName:this.lastnameCtrl,
     userName:this.usernameCtrl,
+    email:this.emailCtrl,
+    telephone:this.telephonetrl,
     role:['']
-  
+
   });
 
-  constructor( 
+  constructor(
     private route: ActivatedRoute,
     private roleService:RoleService,
     private userService:UserService,
@@ -73,13 +77,15 @@ export class UserDetailComponent implements OnInit {
       }
     )
   }
-  
+
   initForm(){
     if(this.user!=null){
       this.userForm.get('firstName')!.patchValue(this.user.firstName);
       this.userForm.get('lastName')!.patchValue(this.user.lastName);
       this.userForm.get('userName')!.patchValue(this.user.userName);
-      this.userForm.get('role')!.patchValue(this.user.role.name);
+      this.userForm.get('email')!.patchValue(this.user.email);
+      this.userForm.get('telephone')!.patchValue(this.user.telephone);
+      // this.userForm.get('role')!.patchValue(this.user.role.name);
       // this.userForm.get('role').patchValue(this.roles.filter((role)=>role.id===this.user.role.id)[0]);
       this.userForm.get('role')!.patchValue(Constante.ROLES.filter((role:Role)=>role.id===this.user!.role.id)[0].name);
       // console.log(this.userForm.get('role')!.value);
@@ -88,21 +94,33 @@ export class UserDetailComponent implements OnInit {
   }
 
   update(){
-   
+
     let reponse:any =  this.userForm.get('role')!.value;
     this.user!.role = reponse;
+    reponse =  this.userForm.get('firstName')!.value;
+    this.user!.firstName = reponse;
+    reponse =  this.userForm.get('lastName')!.value;
+    this.user!.lastName = reponse;
+    reponse=  this.userForm.get('userName')!.value;
+    this.user!.userName = reponse;
+    reponse =  this.userForm.get('email')!.value;
+    this.user!.email = reponse;
+    reponse =  this.userForm.get('telephone')!.value;
+    this.user!.telephone = reponse;
 
-    let role:Role = this.user!.role;
+
+
+
+    // let role:Role = this.user!.role;
     // console.log(role);
     // console.log(this.user);
-
     // let firstName1:any = this.userForm.get('firstName')!.value;
     // this.user!.firstName = firstName1;
 
     this.userService.saveUser(this.user!).subscribe(
       ()=>this.router.navigate(['gestionComptes'])
     );
-    
+
   }
 
 }

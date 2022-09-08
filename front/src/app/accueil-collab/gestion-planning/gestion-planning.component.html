@@ -29,3 +29,20 @@
     </div>
     <app-event-form *ngIf="write" [id]="idForPlanning" (notifyParent)="getNotification($event)" ></app-event-form>
   </div>
+<<<<<<< HEAD
+=======
+  <div>
+    <button (click)="toMonthly()">Month</button>
+  </div>
+</div>
+<div *ngIf="calendarView=='daily'">
+  <app-resume-journee [id]="idForPlanning"></app-resume-journee>
+</div>
+<div *ngIf="calendarView=='weekly'">
+  <app-resume-semaine [idForPlanning]="idForPlanning"></app-resume-semaine>
+</div>
+<div *ngIf="calendarView=='monthly'">
+  <app-resume-mois [idForPlanning]="idForPlanning"></app-resume-mois>
+</div>
+<app-event-form *ngIf="write" [id]="idForPlanning" (notifyParent)="getNotification($event)" ></app-event-form>
+>>>>>>> b6da5fd00eb7fab1165b98802a768d55f6e3750c
