@@ -23,7 +23,7 @@
   </div>
     <li *ngFor="let event of this.eventsList" [value]="event" class="list-none">
         <div class="text-center xl:w-[25%] mx-auto">
-          <div>
+          <div class="mt-5 border border-darkmode-400 rounded-md p-5 bg-[#232d45]">
             <h3>{{event.date_debut_timestamp*1000 | date: 'dd/MM/yyyy HH:mm'}}</h3>
             <p>{{event.name}}</p>
             <p>{{event.description}}</p>
