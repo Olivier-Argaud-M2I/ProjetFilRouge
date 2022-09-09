@@ -65,11 +65,12 @@ export class ResumeJourneeComponent implements OnInit {
     this.currentDate = new Date(moment().format());
     this.currentDate = this.dm.datetimeToDate(this.currentDate);
     this.dateToShow = this.dm.prepareDateString(this.currentDate);
-    this.refreshEvents();
+    this.ngOnInit();
   }
 
 
   ngOnInit():void {
+
     this.eventsService.getEventsByDayAndUserId(this.tms,this.id).subscribe(
       (response)=>{
         this.eventsList = response;
@@ -93,29 +94,23 @@ export class ResumeJourneeComponent implements OnInit {
       })
     }
 
-
-
-
   }
 
   del(id:number){
     this.eventsService.deleteEvent(id).subscribe(
       ()=>{
-        this.refreshEvents();
+        this.ngOnInit();
       }
     );
   }
 
-  refreshEvents(){
-    this.ngOnInit();
-  }
 
   nextDay(){
     this.jour+=1;
     this.currentDate = moment(this.currentDate).add(1,"days").toDate();
     this.tms = Math.floor(this.currentDate.getTime()/1000);
     this.dateToShow = this.dm.prepareDateString(this.currentDate);
-    this.refreshEvents();
+    this.ngOnInit();
   }
 
   previousDay(){
@@ -123,7 +118,7 @@ export class ResumeJourneeComponent implements OnInit {
     this.currentDate = moment(this.currentDate).add(-1,"days").toDate();
     this.tms = Math.floor(this.currentDate.getTime()/1000);
     this.dateToShow = this.dm.prepareDateString(this.currentDate);
-    this.refreshEvents();
+    this.ngOnInit();
   }
 
   /**editer(event:Events){
@@ -167,12 +162,12 @@ export class ResumeJourneeComponent implements OnInit {
     let fin = new Date(this.eventModifyForm.value.date_fin_timestamp!).getTime()/1000;
     this.eventModifyForm.value.date_debut_timestamp = debut.toString();
     this.eventModifyForm.value.date_fin_timestamp = fin.toString();
-    this.eventModifyForm.value.user_id = event.user_id.toString();
 
     // On utilise la fonction verify pour garantir que deux évènements n'aient
     // pas lieu en même temps
     // Si la listeToCompare renvoit des élèments ce n'est pas bon signe
-    /**this.eventsService.verify(event.user_id,debut,fin).subscribe(
+    // Pas encore au point
+    /** this.eventsService.verify(event.user_id,debut,fin).subscribe(
       (response)=>{
         this.eventsListToCompare = response;
       }
@@ -181,11 +176,10 @@ export class ResumeJourneeComponent implements OnInit {
       console.log("listToCompare not null and not empty");
       return;
     }*/
-
     this.eventsService.updateEvent(this.eventModifyForm.value).subscribe(
-      ()=>{
+      (response)=>{
         this.notifyParent.emit('refresh');
-      }
+        }
     );
     this.ngOnInit();
   }
@@ -207,8 +201,5 @@ export class ResumeJourneeComponent implements OnInit {
     this.ngOnInit();
   }
 
-  goTo(){
-
-  }
 
 }

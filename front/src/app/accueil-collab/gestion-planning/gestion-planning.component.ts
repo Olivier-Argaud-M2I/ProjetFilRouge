@@ -30,6 +30,7 @@ export class GestionPlanningComponent implements OnInit {
     private userService:UserService,
     private contactService:ContactService
     ) {
+    this.idForPlanning = Number(this.route.snapshot.paramMap.get('id'));
     this.calendarView = "false";
     this.viewForm = false;
   }
