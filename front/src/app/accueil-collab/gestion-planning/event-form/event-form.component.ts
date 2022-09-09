@@ -11,13 +11,13 @@ import {EventsService} from "../../../service/events.service";
 export class EventFormComponent implements OnInit {
 
   @Output() notifyParent: EventEmitter<any> = new EventEmitter();
-  @Input()id!:number;
+  @Input()idForPlanning!:number;
 
   nameCtrl = this.fb.control('',[Validators.required]);
   descriptionCtrl = this.fb.control('');
   datetimeDebutCtrl = this.fb.control('',[Validators.required]);
   datetimeFinCtrl = this.fb.control('',[Validators.required]);
-  userIdCtrl = this.fb.control(this.id);
+  userIdCtrl = this.fb.control(this.idForPlanning);
 
   eventForm = this.fb.group({
     name:this.nameCtrl,
@@ -44,7 +44,7 @@ export class EventFormComponent implements OnInit {
     let fin = new Date(this.eventForm.value.date_fin_timestamp!).getTime()/1000;
     this.eventForm.value.date_debut_timestamp = debut.toString();
     this.eventForm.value.date_fin_timestamp = fin.toString();
-    this.eventForm.value.user_id = this.id;
+    this.eventForm.value.user_id = this.idForPlanning;
     this.eventForm.value.user_id = this.loginService.userLogged?.id!;
 
     // On utilise la fonction verify pour garantir que deux évènements n'aient

@@ -21,7 +21,7 @@ import {ContactService} from "../../../service/contact.service";
  // providedIn: 'root'
 // })
 export class ResumeJourneeComponent implements OnInit {
-  @Input()id!:number;
+  @Input()idForPlanning!:number;
 
   update:boolean= false;
   delete:boolean= false;
@@ -71,21 +71,21 @@ export class ResumeJourneeComponent implements OnInit {
 
   ngOnInit():void {
 
-    this.eventsService.getEventsByDayAndUserId(this.tms,this.id).subscribe(
+    this.eventsService.getEventsByDayAndUserId(this.tms,this.idForPlanning).subscribe(
       (response)=>{
         this.eventsList = response;
       }
     )
 
-    if(this.id==this.loginService.userLogged?.id){
+    if(this.idForPlanning==this.loginService.userLogged?.id){
       this.update = true;
       this.delete = true;
       this.calendarOwner = this.loginService.userLogged;
     }
     else{
-      this.userService.getUser(this.id).subscribe((user)=>{
+      this.userService.getUser(this.idForPlanning).subscribe((user)=>{
         this.calendarOwner=user;
-        this.contactService.getContact(this.id,this.loginService.userLogged!.id).subscribe(
+        this.contactService.getContact(this.idForPlanning,this.loginService.userLogged!.id).subscribe(
           (contact)=>{
             this.update=contact.calendarPrivileges.filter((priv)=> priv.name==="modifyEvent").length>0;
             this.delete=contact.calendarPrivileges.filter((priv)=> priv.name==="deleteEvent").length>0;

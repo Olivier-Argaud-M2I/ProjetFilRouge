@@ -25,7 +25,8 @@
   <div *ngIf="eventsList.length === 0 || eventsList === null">
     <p class="mt-5 text-center text-red-900 text-lg font-bold mb-3">Aucun évènement à afficher...</p>
   </div>
-    <li *ngFor="let event of this.eventsList" [value]="event" class="list-none">
+  <div id="htmlData">
+    <li *ngFor="let event of this.eventsList" [value]="event" class="list-none" >
         <div class="text-center xl:w-[25%] mx-auto">
           <div class="mt-5 border border-darkmode-400 rounded-md p-5 bg-[#232d45]">
             <h3>{{event.date_debut_timestamp*1000 | date: 'dd/MM/yyyy HH:mm'}}</h3>
@@ -34,7 +35,7 @@
           </div>
         </div>
     </li>
-
+  </div>
   <div *ngIf="mois!==0" class="text-center">
     <p (click)="reset()" class="btn btn-outline-secondary py-1 px-2 mb-3">Mois actuel</p>
   </div>

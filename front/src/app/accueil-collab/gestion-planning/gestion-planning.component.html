@@ -1,6 +1,6 @@
 <app-nav-bar></app-nav-bar>
 
-<div class="intro-y box">  
+<div class="intro-y box">
   <div class="flex flex-col sm:flex-row items-center p-5 border-b border-darkmode-400">
       <h2 class="font-medium text-xl mr-auto">
         Planning de <span class="capitalize">{{user.firstName}} </span> <span class="uppercase">{{user.lastName}}</span>
@@ -9,7 +9,7 @@
 
 <!-- <div class="intro-y box px-5 pt-5 mt-5"> -->
 
-    
+
   <div class="intro-y box px-5 pt-5 mt-5 pb-5">
     <div class="text-center">
       <button (click)="toDaily()"    class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Jour</button>
@@ -23,30 +23,30 @@
           <line x1="5" y1="12" x2="19" y2="12"></line>
         </svg>
         Ajouter
-      </button> 
+      </button>
       <button *ngIf="viewForm===true" (click)="deactivateForm()" class="btn btn-outline-secondary py-3 w-full xl:w-32 xl:mr-3 align-top">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="minus" data-lucide="minus" class="lucide lucide-minus block mx-auto">
           <line x1="5" y1="12" x2="19" y2="12"></line>
         </svg>
         Fermer
-      </button> 
+      </button>
     </div>
-    
+
   </div>
 </div>
 
     <div *ngIf="calendarView=='daily'">
-      <app-resume-journee [id]="idForPlanning"></app-resume-journee>
+      <app-resume-journee [idForPlanning]="idForPlanning"></app-resume-journee>
     </div>
     <div *ngIf="calendarView=='weekly'">
-      <app-resume-semaine [id]="idForPlanning"></app-resume-semaine>
+      <app-resume-semaine [idForPlanning]="idForPlanning"></app-resume-semaine>
     </div>
     <div *ngIf="calendarView=='monthly'">
-      <app-resume-mois [id]="idForPlanning"></app-resume-mois>
-    </div>    
+      <app-resume-mois [idForPlanning]="idForPlanning"></app-resume-mois>
+    </div>
 
     <div *ngIf="viewForm===true">
-    <app-event-form *ngIf="write" [id]="idForPlanning" (notifyParent)="getNotification($event)" ></app-event-form>
+    <app-event-form *ngIf="write" [idForPlanning]="idForPlanning" (notifyParent)="getNotification($event)" ></app-event-form>
     </div>
 
 
