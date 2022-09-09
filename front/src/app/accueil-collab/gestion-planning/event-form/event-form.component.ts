@@ -45,7 +45,6 @@ export class EventFormComponent implements OnInit {
     this.eventForm.value.date_debut_timestamp = debut.toString();
     this.eventForm.value.date_fin_timestamp = fin.toString();
     this.eventForm.value.user_id = this.idForPlanning;
-    this.eventForm.value.user_id = this.loginService.userLogged?.id!;
 
     // On utilise la fonction verify pour garantir que deux évènements n'aient
     // pas lieu en même temps
