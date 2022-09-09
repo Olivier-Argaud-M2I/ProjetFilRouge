@@ -137,7 +137,7 @@ export class ResumeJourneeComponent implements OnInit {
     this.currentDate = this.dm.datetimeToDate(this.currentDate);
     this.tms=Math.floor(this.currentDate.getTime()/1000);
     this.dateToShow = this.dm.prepareDateString(this.currentDate);
-    this.refreshEvents();
+    this.ngOnInit();
   }
 
   /**
@@ -172,7 +172,7 @@ export class ResumeJourneeComponent implements OnInit {
     // On utilise la fonction verify pour garantir que deux évènements n'aient
     // pas lieu en même temps
     // Si la listeToCompare renvoit des élèments ce n'est pas bon signe
-    this.eventsService.verify(event.user_id,debut,fin).subscribe(
+    /**this.eventsService.verify(event.user_id,debut,fin).subscribe(
       (response)=>{
         this.eventsListToCompare = response;
       }
@@ -180,18 +180,19 @@ export class ResumeJourneeComponent implements OnInit {
     if(this.eventsListToCompare!=null && this.eventsListToCompare!=[]){
       console.log("listToCompare not null and not empty");
       return;
-    }
+    }*/
+
     this.eventsService.updateEvent(this.eventModifyForm.value).subscribe(
       ()=>{
         this.notifyParent.emit('refresh');
       }
     );
-    this.reset();
+    this.ngOnInit();
   }
 
   deactivateFormModif(){
     this.modification=-1;
-    this.reset();
+    this.ngOnInit();
   }
 
   initForm(eventInfo:Events){
@@ -203,7 +204,7 @@ export class ResumeJourneeComponent implements OnInit {
     this.eventModifyForm.get('date_debut_timestamp')?.patchValue(moment(eventInfo.date_debut_timestamp*1000).format("yyyy-MM-ddTHH:mm"));
     this.eventModifyForm.get('date_fin_timestamp')?.patchValue(moment(eventInfo.date_fin_timestamp*1000).format("yyyy-MM-ddTHH:mm"));
     this.eventModifyForm.get('user_id')?.patchValue(eventInfo.user_id.toString());
-    this.reset();
+    this.ngOnInit();
   }
 
   goTo(){

@@ -15,6 +15,7 @@ const daysOfTheWeek:String = "Dimanche Lundi Mardi Mercredi Jeudi Vendredi Samed
   styleUrls: ['./resume-semaine.component.css']
 })
 export class ResumeSemaineComponent implements OnInit {
+
   @Input()idForPlanning!:number;
 
   eventsList: Events[] = [];
@@ -138,7 +139,7 @@ export class ResumeSemaineComponent implements OnInit {
     this.lastMonday = this.dm.findLastMonday(this.actualMonday);
     this.nextMonday = this.dm.findNextMonday(this.actualMonday);
     this.sunday = moment(this.nextMonday.getTime()-1).toDate();
-    this.refreshEvents()
+    this.ngOnInit();
   }
 
   fillMap(tms:number){

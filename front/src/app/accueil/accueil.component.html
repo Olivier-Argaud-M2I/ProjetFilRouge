@@ -1,34 +1,3 @@
-<!-- 
-    <div class="px-4 py-2.5 bg-gradient-to-r from-cyan-700 to-sky-900 bg-opacity-50">
-
-        <img src="../../assets/pictures/logoSmartPlanner.png" alt="Logo Smart Planner" class="mt-5 hover:scale-110">
-
-        <div >
-            <div *ngIf="loginService.isLogged"> Bienvenue <span class="capitalize">{{loginService!.userLogged!.userName}}</span></div>
-
-            <div class="flex flex-row mt-4 space-x-4 text-sm font-bold justify-end">
-                <input *ngIf="!loginService.isLogged" type="button" routerLink="/login" routerLinkActive = "selectedMenu"  value="Connexion" class="bg-[#EC4B4B] p-1 rounded-md hover:scale-110 hover:bg-slate-300 cursor-pointer drop-shadow-2xl">
-                <input *ngIf="loginService.isLogged" type="button" (click)="logout()" value="Lougout">
-                <input *ngIf="loginService.roleMatch(['cruduser'])" type="button" routerLink="/gestionComptes" routerLinkActive = "selectedMenu"  value="Gestion comptes">
-                <input *ngIf="loginService.isLogged" type="button" routerLink="/accueilCollab" routerLinkActive = "selectedMenu"  value="Espace Collaborateur">
-            </div>
-        </div>
-
-    </div>
-
-    <div class="mt-10 grid grid-cols-2">
-
-        <div>
-            <img src="../../assets/pictures/planner.svg" alt="" class="w-[50%] mx-auto opacity-70">
-        </div>
-
-        <div class="font-bold uppercase text-center font-skygraze">
-            <p><span class="text-5xl">Smart Planner</span> <br> <span class="text-3xl mt-1"> le logiciel qui répond</span> <br> <span class="text-5xl">à vos besoins !</span></p>
-        </div>
-
-    </div> -->
-
-
     <div class="login">
 
         <div class="container sm:px-10">

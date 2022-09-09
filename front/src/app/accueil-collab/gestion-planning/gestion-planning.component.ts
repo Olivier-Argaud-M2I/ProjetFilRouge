@@ -81,7 +81,7 @@ export class GestionPlanningComponent implements OnInit {
 
   deactivateForm(){
     this.viewForm = false;
-    this.ngOnInit;
+    this.ngOnInit
   }
 
   refresh(){

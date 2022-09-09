@@ -2,8 +2,8 @@
   <div>
     <h1>RESUME MENSUEL DES EVENEMENTS</h1><br>
   </div>
-  <button (click)="openPDF()">Export Pdf</button>
-  <button (click)="sendMail()">Export Email</button>
+  <button (click)="openPDF()" class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Export Pdf</button>
+  <button (click)="sendMail()" class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Export Email</button>
   <div>
     <p>{{actualMonth}}</p>
   </div>
@@ -14,7 +14,7 @@
   <div *ngIf="eventsList.length === 0 || eventsList === null">
     <p>Aucun évènement à afficher...</p>
   </div>
-  <ul  id="htmlData">
+  <ul>
     <li *ngFor="let event of this.eventsList" [value]="event">
       <fieldset>
         <div>

@@ -2,13 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GestionPlanningComponent } from './gestion-planning.component';
 
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-import { CalendarOptions } from '@fullcalendar/core'; 
-import dayGridPlugin from '@fullcalendar/daygrid'; 
-import interactionPlugin from '@fullcalendar/interaction';
-import list from '@fullcalendar/list';
-import timeGrid from '@fullcalendar/timegrid';
+
 
 
 @NgModule({
@@ -16,17 +12,7 @@ import timeGrid from '@fullcalendar/timegrid';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 
-
-
 export class AppModule { }
-
-export class AppComponent {
-
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth'
-  };
-
-}
 
 describe('GestionPlanningComponent', () => {
   let component: GestionPlanningComponent;

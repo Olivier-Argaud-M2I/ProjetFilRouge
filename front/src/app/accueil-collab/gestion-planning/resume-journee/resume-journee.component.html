@@ -1,70 +1,86 @@
-<div>
-  <div>
-    <h1>Résumé quotidien des évènements</h1><br>
-  </div>
-  <div>
-    <p>{{dateToShow}}</p>
-  </div>
-  <div>
-    <button class="button" (click)="previousDay()">Précédent</button>
-    <button class="button" (click)="nextDay()">Suivant</button>
-  </div>
-  <div *ngIf="eventsList.length === 0 || eventsList === null">
-    <p>Aucun évènement à afficher...</p>
-  </div>
-<li *ngFor="let event of this.eventsList" [value]="event">
-  <div>
-    <h3>{{event.date_debut_timestamp*1000 | date: 'HH:mm'}}</h3>
-    <p>{{event.name}}</p>
-    <p>{{event.description}}</p>
-  </div>
-  <div>
-    <button *ngIf="update" (click)="initForm(event)">Modifier</button>
-    <button *ngIf="delete" (click)="del(event.id)">Supprimer</button>
-  </div>
+
+  <div class="intro-y box mt-2">
+    <div class="flex flex-col sm:flex-row items-center p-5 border-b border-darkmode-400">
+      <h2 class="font-medium text-xl mr-auto">Résumé quotidien des évènements</h2>
+    </div>
+    
+      
+    <div class="mt-3 text-center text-lg">
+      <button class="button" (click)="previousDay()" class="btn btn-outline-secondary py-3 px-4 mr-3 align-top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="skip-back" data-lucide="skip-back" class="lucide lucide-skip-back block mx-auto">
+          <polygon points="19 20 9 12 19 4 19 20"></polygon>
+          <line x1="5" y1="19" x2="5" y2="5"></line>
+        </svg>
+      </button>
+        {{dateToShow}}
+      <button class="button" (click)="nextDay()" class="btn btn-outline-secondary ml-3 py-3 px-4 xl:mr-3 align-top ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="skip-forward" data-lucide="skip-forward" class="lucide lucide-skip-forward block mx-auto">
+          <polygon points="5 4 15 12 5 20 5 4"></polygon>
+          <line x1="19" y1="5" x2="19" y2="19"></line>
+        </svg>
+      </button>
+    </div>
+    <div *ngIf="eventsList.length === 0 || eventsList === null">
+      <p class="mt-5 text-center text-red-900 text-lg font-bold">Aucun évènement à afficher...</p>
+    </div>
+    <li *ngFor="let event of this.eventsList" [value]="event" class="list-none">
+      <div class="text-center xl:w-[25%] mx-auto">
+        <div class="mt-5 border border-darkmode-400 rounded-md p-5 bg-[#232d45]">
+          <p>{{event.date_debut_timestamp*1000 | date: 'HH:mm'}} à {{event.date_fin_timestamp*1000 | date: 'HH:mm'}}<p>
+          <p>{{event.name}}</p>
+          <p>{{event.description}}</p>
+        </div>
+        <div class="text-center mt-1">
+          <button *ngIf="update" (click)="initForm(event)" class="btn btn-outline-secondary py-3 px-4 w-32 xl:mr-3 align-top">Modifier</button>
+          <button *ngIf="delete" (click)="del(event.id)" class="btn btn-outline-secondary py-3 px-4 w-32 xl:mr-3 align-top">Supprimer</button>
+        </div>
+      </div>
+  
+
+  
   <div *ngIf="modification===event.id">
-    <form (ngSubmit)="modify(event)" [formGroup]="eventModifyForm">
-      <label>Modifier l'évènement</label>
-      <div>
-        <input type="hidden" formControlName="id" [value]="event.id">
+
+
+    <div class="intro-y box">
+      <div class="flex flex-col sm:flex-row items-center p-5 border-b border-darkmode-400">
+          <h2 class="font-medium text-xl mr-auto">
+            Modifier l'évènement
+          </h2>
       </div>
-      <div>
-        <label>Nom de l'évènement</label>
+    
+      <div id="input" class="p-5">
+    
+        <div class="preview" style="display: block;">
+          <form (ngSubmit)="modify(event)" [formGroup]="eventModifyForm">
+            <div>
+              <label class="form-label">Nom de l'évènement</label>
+              <input type="text" formControlName="name" class="form-control">
+            </div>
+            <div class="mt-3">
+              <label class="form-label">Description</label>
+              <input type="text" formControlName="description" placeholder="Facultatif" class="form-control">
+            </div>
+            <div class="mt-3">
+              <label for="inputDatetimeDebut" class="form-label">Début</label>
+              <input type="datetime-local" id="inputDatetimeDebut" name="inputDatetimeDebut" formControlName="date_debut_timestamp" placeholder="yyyy-MM-ddTHH:mm" required class="form-control"/>
+            </div>
+            <div class="mt-3">
+              <label for="inputDatetimeFin" class="form-label">Fin</label>
+              <input type="datetime-local" id="inputDatetimeFin" name="inputDatetimeFin" formControlName="date_fin_timestamp" placeholder="yyyy-MM-ddTHH:mm"  required class="form-control"/>
+            </div>
+            <input type="hidden" formControlName="user_id">
+            <div class="mt-3 text-center">
+              <input type="button" value="Fermer" (click)="deactivateFormModif()" class="btn btn-primary py-3 px-4 xl:w-32 xl:mr-3 align-top">
+              <input type="submit" value="Valider" class="btn btn-primary ml-3 py-3 px-4 xl:w-32 xl:mr-3 align-top">
+            </div>
+          </form>
+        </div>
       </div>
-      <div>
-        <input type="text" formControlName="name">
-      </div>
-      <div>
-        <label>Description</label>
-      </div>
-      <div>
-        <input type="text" formControlName="description" placeholder="facultatif">
-      </div>
-      <div>
-        <label for="inputDatetimeDebut">Début</label>
-      </div>
-      <div>
-        <input type="datetime-local" id="inputDatetimeDebut" name="inputDatetimeDebut" formControlName="date_debut_timestamp"
-               placeholder="yyyy-MM-ddTHH:mm" required/>
-      </div>
-      <div>
-        <label for="inputDatetimeFin">Fin</label>
-      </div>
-      <div>
-        <input type="datetime-local" id="inputDatetimeFin" name="inputDatetimeFin" formControlName="date_fin_timestamp"
-               placeholder="yyyy-MM-ddTHH:mm"  required />
-      </div>
-      <div>
-        <input type="button" value="Annuler" (click)="deactivateFormModif()">
-      </div>
-      <div>
-        <input type="submit" value="Valider">
-      </div>
-    </form>
+    </div>
   </div>
 </li><br>
 
-  <div *ngIf="jour!==0">
-    <p (click)="reset()" class="btn btn-outline-secondary py-1 px-2">Revenir à aujourd'hui</p>
+  <div *ngIf="jour!==0" class="text-center">
+    <p (click)="reset()" class="btn btn-outline-secondary py-1 px-2 mb-3">Revenir à aujourd'hui</p>
   </div>
 </div>
