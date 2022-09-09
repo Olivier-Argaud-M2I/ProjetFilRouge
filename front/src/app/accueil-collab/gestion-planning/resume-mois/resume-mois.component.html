@@ -3,9 +3,10 @@
     <h2 class="font-medium text-xl mr-auto">Résumé mensuel des évènements</h2>
   </div>
 
-  <button (click)="openPDF()" class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Export Pdf</button>
-  <button (click)="sendMail()" class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Export Email</button>
-
+  <div class="text-right mt-3">
+    <button (click)="openPDF()" class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Export Pdf</button>
+    <button (click)="sendMail()" class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Export Email</button>
+  </div>
   <div class="mt-3 text-center text-lg">
     <button class="button" (click)="previousMonth()" class="btn btn-outline-secondary py-3 px-4 mr-3 align-top">
       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="skip-back" data-lucide="skip-back" class="lucide lucide-skip-back block mx-auto">
@@ -21,28 +22,21 @@
       </svg>
     </button>
   </div>
-
-
-
-
-  
-  
   <div *ngIf="eventsList.length === 0 || eventsList === null">
-    <p>Aucun évènement à afficher...</p>
+    <p class="mt-5 text-center text-red-900 text-lg font-bold mb-3">Aucun évènement à afficher...</p>
   </div>
-  <ul>
-    <li *ngFor="let event of this.eventsList" [value]="event">
-      <fieldset>
-        <div>
-          <h3>{{event.date_debut_timestamp*1000 | date: 'dd/MM/yyyy HH:mm'}}</h3>
-          <p>{{event.name}}</p>
-          <p>{{event.description}}</p>
+    <li *ngFor="let event of this.eventsList" [value]="event" class="list-none">
+        <div class="text-center xl:w-[25%] mx-auto">
+          <div class="mt-5 border border-darkmode-400 rounded-md p-5 bg-[#232d45]">
+            <h3>{{event.date_debut_timestamp*1000 | date: 'dd/MM/yyyy HH:mm'}}</h3>
+            <p>{{event.name}}</p>
+            <p>{{event.description}}</p>
+          </div>
         </div>
-      </fieldset>
-    </li><br>
-  </ul>
-  <div *ngIf="mois!==0">
-    <p (click)="reset()">Revenir au mois actuel</p>
+    </li>
+
+  <div *ngIf="mois!==0" class="text-center">
+    <p (click)="reset()" class="btn btn-outline-secondary py-1 px-2 mb-3">Mois actuel</p>
   </div>
 </div>
 
